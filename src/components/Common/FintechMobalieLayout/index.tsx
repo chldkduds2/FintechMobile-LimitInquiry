@@ -1,8 +1,8 @@
-import React, { Suspense, lazy } from 'react'
-import type { PropsWithChildren } from 'react'
-import Footer from '../Footer/index'
+import React, { Suspense, lazy } from 'react';
+import type { PropsWithChildren } from 'react';
+import Footer from '../Footer/index';
 
-const FindaBoardLayout = ({ children }: PropsWithChildren) => {
+const FintechMobalieLayout = ({ children }: PropsWithChildren) => {
     return (
         <div className="grid mt-10 place-items-center">
             <div className="w-[400px] font-sans">
@@ -10,7 +10,7 @@ const FindaBoardLayout = ({ children }: PropsWithChildren) => {
                 {/* <Footer /> */}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default FindaBoardLayout
+export default FintechMobalieLayout;

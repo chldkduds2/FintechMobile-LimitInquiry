@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react';
 
-const Container: React.FC = ({ children }: any) => {
-    return <div className="w-[360px] justify-center items-center m-auto">{children}</div>
-}
-
-export default Container
+const FintechMobalieContentLayout = ({ children }: PropsWithChildren) => {
+    return <div className="w-[360px] justify-center items-center m-auto">{children}</div>;
+};
+export default FintechMobalieContentLayout;

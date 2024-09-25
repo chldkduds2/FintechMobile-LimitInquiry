@@ -118,4 +118,4 @@ export const LimitInquiryResponse_DetailedDummyData = {
     status: 'condition_approved',
     contractType: 'OUTBOUND_CALL',
     responseMessage: '정상',
-}
+};

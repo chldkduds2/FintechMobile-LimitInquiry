@@ -1,19 +1,14 @@
-import React, { useState } from 'react'
-import { FaClock } from 'react-icons/fa'
-import useCountdownToMidnight from '@/hooks/CountdownToMidnight/useCountdownToMidnight'
+import React from 'react';
+import { FaClock } from 'react-icons/fa';
+import useCountdownToMidnight from '@/hooks/CountdownToMidnight/useCountdownToMidnight';
 
 const CountdownToMidnight: React.FC = () => {
-    const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0])
-    const { timeLeft, hoursLeft } = useCountdownToMidnight()
-
-    const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedDate(event.target.value)
-    }
+    const { timeLeft, hoursLeft } = useCountdownToMidnight();
 
     return (
         <div
             className={
-                hoursLeft <= 10
+                hoursLeft <= 9
                     ? 'flex items-center text-sm font-pretendard text-[#ff7a44] mt-3 mb-10'
                     : 'flex items-center text-sm font-pretendard text-uniqueGray-40 mt-3 mb-10'
             }
@@ -22,7 +17,7 @@ const CountdownToMidnight: React.FC = () => {
             <h2 className="mr-1">유효시간</h2>
             <p>{timeLeft}</p>
         </div>
-    )
-}
+    );
+};
 
-export default CountdownToMidnight
+export default CountdownToMidnight;

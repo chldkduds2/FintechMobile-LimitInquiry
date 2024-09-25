@@ -1,29 +1,29 @@
-const plugin = require('tailwindcss/plugin')
+const plugin = require('tailwindcss/plugin');
 
 const createTypography = (type) => {
     const baseStyles = {
         lineHeight: '145%',
         letterSpacing: '-0.01em',
-    }
+    };
 
     const sizes = {
         bold: ['30', '27', '25', '24', '22', '20', '18', '16', '15', '14', '13', '12', '11', '10'],
         medium: ['30', '27', '25', '24', '22', '20', '18', '16', '15', '14', '13', '12', '11', '10'],
         regular: ['30', '27', '25', '24', '22', '20', '18', '16', '15', '14', '13', '12', '11', '10'],
         light: ['30', '27', '25', '24', '22', '20'],
-    }
+    };
 
     const weights = {
         bold: '700',
         medium: '500',
         regular: '400',
         light: '300',
-    }
+    };
 
     return Object.fromEntries(
-        sizes[type].map((size) => [`${size}-${type}`, [`${size}px`, { ...baseStyles, fontWeight: weights[type] }]]),
-    )
-}
+        sizes[type].map((size) => [`${size}-${type}`, [`${size}px`, { ...baseStyles, fontWeight: weights[type] }]])
+    );
+};
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -323,8 +323,8 @@ module.exports = {
                         ],
                     },
                 },
-                ['responsive'],
-            )
+                ['responsive']
+            );
         }),
     ],
-}
+};

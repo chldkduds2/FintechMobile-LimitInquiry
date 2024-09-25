@@ -1,11 +1,11 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const webpack = require('webpack')
-const dotenv = require('dotenv')
-const Warning = require('postcss/lib/warning')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+const Warning = require('postcss/lib/warning');
 
-dotenv.config()
+dotenv.config();
 
 module.exports = {
     entry: {
@@ -60,4 +60,4 @@ module.exports = {
         filename: '[name].[contenthash].js', // 파일 이름에 해시 추가
         path: path.resolve(__dirname, 'dist'),
     },
-}
+};

@@ -1,35 +1,11 @@
-import React from 'react'
-import { useLoanRateLimitList } from '@/hooks/LoanRateLimitList/useLoanRateLimitList'
+import React from 'react';
+import { useLoanRateLimitList } from '@/hooks/LoanApprovedListContainer/LoanRateLimitList/useLoanRateLimitList';
 
-const LoanList: React.FC = () => {
-    const { data: loans = [], isLoading } = useLoanRateLimitList()
+const LoanRateLimitList = () => {
+    const { isLoading, maxLoan, minRateLoan, maxLoanLimitFormatted, minLoanLimitFormatted, minLoanRateFormatted } =
+        useLoanRateLimitList();
 
-    const formatAmount = (amount: number) => {
-        return new Intl.NumberFormat('ko-KR').format(amount)
-    }
-
-    const maxLoan = (loans as any[]).reduce((max, loan) => {
-        if (!loan.condition || !loan.condition.loanLimit) return max
-        return (max.condition?.loanLimit || 0) < loan.condition.loanLimit ? loan : max
-    }, {} as any)
-
-    const minRateLoan = (loans as any[]).reduce((min, loan) => {
-        if (!loan.condition || !loan.condition.loanRate) return min
-        return (min.condition?.loanRate || Infinity) > loan.condition.loanRate ? loan : min
-    }, {} as any)
-
-    if (isLoading) return <div>Loading...</div>
-
-    // 만원 단위로 계산
-    const maxLoanLimitInManwon = maxLoan.condition?.loanLimit ? maxLoan.condition.loanLimit / 10000 : 0
-    const maxLoanLimitFormatted = maxLoanLimitInManwon ? formatAmount(maxLoanLimitInManwon) + ' 만원' : '정보 없음'
-
-    const minLoanLimitInManwon = minRateLoan.condition?.loanLimit ? minRateLoan.condition.loanLimit / 10000 : 0
-    const minLoanLimitFormatted = minLoanLimitInManwon ? formatAmount(minLoanLimitInManwon) + ' 만원' : '정보 없음'
-
-    const minLoanRateFormatted = minRateLoan.condition?.loanRate
-        ? formatAmount(minRateLoan.condition.loanRate) + ' %'
-        : '정보 없음'
+    if (isLoading) return <div>Loading...</div>;
 
     return (
         <div className="flex mb-5">
@@ -40,7 +16,7 @@ const LoanList: React.FC = () => {
                         <img
                             className="mt-[-20px] mr- h-2[28px] w-[28px] rounded-full float-right mr-3"
                             src={minRateLoan.product.bank.bankLogoUrl}
-                            alt={`${minRateLoan.product.bank.name}icon error...`}
+                            alt={`${minRateLoan.product.bank.name} icon error...`}
                         />
                         <p className="mb-1 text-lg font-bold leading-[19.8px] text-black">{minLoanRateFormatted}</p>
                         <p className="text-lg font-bold leading-[19.8px] text-gray-50">{minLoanLimitFormatted}</p>
@@ -56,7 +32,7 @@ const LoanList: React.FC = () => {
                         <img
                             className="mt-[-20px] mr- h-2[28px] w-[28px] rounded-full float-right mr-3"
                             src={maxLoan.product.bank.bankLogoUrl}
-                            alt={`${maxLoan.product.bank.className}icon error...`}
+                            alt={`${maxLoan.product.bank.className} icon error...`}
                         />
                         <p className="mb-1 text-lg font-bold leading-[19.8px] text-gray-50">
                             {maxLoan.condition.loanRate} %
@@ -68,7 +44,7 @@ const LoanList: React.FC = () => {
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default LoanList
+export default LoanRateLimitList;

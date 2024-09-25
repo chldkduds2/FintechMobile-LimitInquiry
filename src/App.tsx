@@ -1,8 +1,8 @@
-import React, { Suspense, lazy } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import FintechMobalieLayout from './components/Common/FintechMobalieLayout'
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import FintechMobalieLayout from './components/Common/FintechMobalieLayout';
 
-const HomePage = lazy(() => import('@/pages/Home/index'))
+const HomePage = lazy(() => import('@/pages/Home/index'));
 
 const App = () => {
     return (
@@ -18,7 +18,7 @@ const App = () => {
                 />
             </Routes>
         </FintechMobalieLayout>
-    )
-}
+    );
+};
 
-export default App
+export default App;

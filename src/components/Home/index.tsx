@@ -1,22 +1,24 @@
-import React from 'react'
-import Title from '../Common/Title/index'
-import TitleLoanRateLimitList from '../Common/Title/TitleLoanRateLimitList'
-import LoanFilterBar from '../Common/LoanFilterBar/index'
-import Container from '@/components/Common/FintechMobalieLayout/FintechMobalieContentLayout/'
+import React from 'react';
+import MainTitleContainer from '../Common/MainTitleContainer/index';
+import LoanRateLimitList from '../Common/MainTitleContainer/LoanRateLimitList';
+import LoanFilterBar from '../Common/LoanFilterBar/index';
+import FintechMobalieContentLayout from '@/components/Common/FintechMobalieLayout/FintechMobalieContentLayout/index';
+import LoanApprovedListContainert from '../Common/LoanApprovedListContainer/index';
 
 const Home = () => {
     return (
-        <>
-            <Container>
-                <Title />
-                <TitleLoanRateLimitList />
-            </Container>
+        <React.Fragment>
+            <FintechMobalieContentLayout>
+                <MainTitleContainer />
+                <LoanRateLimitList />
+            </FintechMobalieContentLayout>
             <div className="h-[10px] w-full bg-gray-99" />
-            <Container>
+            <FintechMobalieContentLayout>
                 <LoanFilterBar />
-            </Container>
-        </>
-    )
-}
+                <LoanApprovedListContainert />
+            </FintechMobalieContentLayout>
+        </React.Fragment>
+    );
+};
 
-export default Home
+export default Home;
