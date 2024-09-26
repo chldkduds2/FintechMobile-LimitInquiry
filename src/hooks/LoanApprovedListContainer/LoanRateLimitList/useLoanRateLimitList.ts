@@ -1,32 +1,37 @@
-import { useApprovedConditionsLoansListDate } from '@/services/ApprovedConditionsLoansDate/queries';
+import { useApprovedConditionsLoansListDate } from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useApprovedConditionsLoansFormat from '@/hooks/ApprovedConditionsLoansFormat/useApprovedConditionsLoansFormat';
+import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
 
 export const useLoanRateLimitList = () => {
-    const { data: approvedConditionsLoanListDate = [], isLoading } = useApprovedConditionsLoansListDate();
+    const { data: approvedConditionsLoanListDate = [], isLoading } =
+        useApprovedConditionsLoansListDate() as unknown as {
+            data: LoansApply[];
+            isLoading: boolean;
+        };
+    const { approvedConditionsLoanLimitDateFormatted, approvedConditionsLoanRateDateFormatted } =
+        useApprovedConditionsLoansFormat();
 
-    const formatAmount = (amount: number) => {
-        return new Intl.NumberFormat('ko-KR').format(amount);
-    };
-
-    const maxLoan = (approvedConditionsLoanListDate as any[]).reduce((max, loan) => {
+    // [ 최대한도 대출 리스트 ]
+    const maxLoan = approvedConditionsLoanListDate.reduce((max, loan) => {
         if (!loan.condition || !loan.condition.loanLimit) return max;
         return (max.condition?.loanLimit || 0) < loan.condition.loanLimit ? loan : max;
-    }, {} as any);
+    }, {} as LoansApply);
 
-    const minRateLoan = (approvedConditionsLoanListDate as any[]).reduce((min, loan) => {
+    // [ 최저금리 대출 리스트 ]
+    const minRateLoan = approvedConditionsLoanListDate.reduce((min, loan) => {
         if (!loan.condition || !loan.condition.loanRate) return min;
         return (min.condition?.loanRate || Infinity) > loan.condition.loanRate ? loan : min;
-    }, {} as any);
+    }, {} as LoansApply);
 
-    // 만원 단위로 계산
-    const maxLoanLimitInManwon = maxLoan.condition?.loanLimit ? maxLoan.condition.loanLimit / 10000 : 0;
-    const maxLoanLimitFormatted = maxLoanLimitInManwon ? formatAmount(maxLoanLimitInManwon) + ' 만원' : '정보 없음';
+    // [ 최대한도 대출 한도 포멧 데이터 ]
+    const maxLoanLimitFormatted = approvedConditionsLoanLimitDateFormatted(maxLoan);
+    // [ 최대한도 대출 금리 포멧 데이터 ]
+    const maxLoanRateFormatted = approvedConditionsLoanRateDateFormatted(maxLoan);
 
-    const minLoanLimitInManwon = minRateLoan.condition?.loanLimit ? minRateLoan.condition.loanLimit / 10000 : 0;
-    const minLoanLimitFormatted = minLoanLimitInManwon ? formatAmount(minLoanLimitInManwon) + ' 만원' : '정보 없음';
-
-    const minLoanRateFormatted = minRateLoan.condition?.loanRate
-        ? formatAmount(minRateLoan.condition.loanRate) + ' %'
-        : '정보 없음';
+    // [ 최저금리 대출 한도 포멧 데이터 ]
+    const minLoanLimitFormatted = approvedConditionsLoanLimitDateFormatted(minRateLoan);
+    // [ 최저금리 대출 금리 포멧 데이터 ]
+    const minLoanRateFormatted = approvedConditionsLoanRateDateFormatted(minRateLoan);
 
     return {
         approvedConditionsLoanListDate,
@@ -34,6 +39,7 @@ export const useLoanRateLimitList = () => {
         maxLoan,
         minRateLoan,
         maxLoanLimitFormatted,
+        maxLoanRateFormatted,
         minLoanLimitFormatted,
         minLoanRateFormatted,
     };

@@ -5,7 +5,7 @@ import Footer from '../Footer/index';
 const FintechMobalieLayout = ({ children }: PropsWithChildren) => {
     return (
         <div className="grid mt-10 place-items-center">
-            <div className="w-[400px] font-sans">
+            <div className="w-[435px] font-sans">
                 {children}
                 {/* <Footer /> */}
             </div>

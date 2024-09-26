@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import CountdownToMidnight from '../CountdownToMidnight';
-import { useApprovedConditionsLoansListCountDate } from '@/services/ApprovedConditionsLoansDate/queries';
+import CountdownToMidnight from './CountdownToMidnight';
+import { useApprovedConditionsLoansListCountDate } from '@/services/ApprovedConditionsLoansDateRepository/queries';
 
 const MainTitleContainer = () => {
     const { data: approvedConditionsLoansListCountDate } = useApprovedConditionsLoansListCountDate();

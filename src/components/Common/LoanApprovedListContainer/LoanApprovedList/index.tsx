@@ -1,19 +1,26 @@
 import React from 'react';
 import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
-import { useApprovedConditionsLoansListDate } from '@/services/ApprovedConditionsLoansDate/queries';
+import { LoanApprovedListTagsColor } from '@/utils/LoanApprovedListTagsColor/';
+import { useApprovedConditionsLoansListDate } from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useApprovedConditionsLoansFormat from '@/hooks/ApprovedConditionsLoansFormat/useApprovedConditionsLoansFormat';
 
 const LoanApprovedList = () => {
-    const { data: approvedConditionsLoanListDate = [], isLoading } = useApprovedConditionsLoansListDate();
+    const { data: approvedConditionsLoanListDate = [], isLoading } =
+        useApprovedConditionsLoansListDate() as unknown as {
+            data: LoansApply[];
+            isLoading: boolean;
+        };
 
-    console.log(approvedConditionsLoanListDate);
+    const { approvedConditionsLoanLimitDateFormatted, approvedConditionsLoanRateDateFormatted } =
+        useApprovedConditionsLoansFormat();
 
     return (
         <React.Fragment>
             {approvedConditionsLoanListDate.length > 0 ? (
                 <div>
-                    {approvedConditionsLoanListDate.map((loan: any, index) => (
+                    {approvedConditionsLoanListDate.map((loan: LoansApply, index: number) => (
                         <div
-                            className="flex-col w-full items-center border-t border-[#c1c2ca]/30 pt-[18px] pb-[18px]"
+                            className=" hover:active:bg-uniqueGray-99 flex-col w-full items-center border-t border-[#c1c2ca]/30 pt-[18px] pb-[18px]"
                             key={index}
                         >
                             <div className="flex">
@@ -27,16 +34,44 @@ const LoanApprovedList = () => {
                                     <div className="flex gap-[6px] text-[13px] text-gray-40">{loan.product.name}</div>
                                 </div>
                             </div>
-                            <div className="ml-14 mt-4 flex w-full items-center justify-start gap-[22px] px-1 pb-[18px]">
+                            <div className="ml-14 mt-4 flex w-full items-center justify-start gap-[22px] px-1 pb-[8px]">
                                 <div className="min-w-[116px] text-[20px] font-[500] text-black">
-                                    {loan.condition.loanRate}%
+                                    {approvedConditionsLoanRateDateFormatted(loan)}
                                 </div>
+                                <p className="min-w-[116px] text-[20px] font-[500] text-black">
+                                    {approvedConditionsLoanLimitDateFormatted(loan)}
+                                </p>
+                            </div>
+                            <div className="flex items-center ml-15">
+                                {loan.product.tags.map((tag, tagIndex) => {
+                                    const { bg, text } = LoanApprovedListTagsColor[tag.text] || {
+                                        bg: 'bg-gray-95',
+                                        text: 'text-gray-40',
+                                    };
+                                    return tag.text === '오늘입금' ? (
+                                        tag.type === 'AVAILABLE_TODAY_DEPOSIT' && (
+                                            <span
+                                                key={tagIndex}
+                                                className={`mr-2 flex h-5 items-center whitespace-nowrap rounded-md ${bg} px-[6px] pt-[1px] text-11-medium leading-[15.95px] ${text}`}
+                                            >
+                                                {tag.text}
+                                            </span>
+                                        )
+                                    ) : (
+                                        <span
+                                            key={tagIndex}
+                                            className={`mr-2 flex h-5 items-center whitespace-nowrap rounded-md ${bg} px-[6px] pt-[1px] text-11-medium leading-[15.95px] ${text}`}
+                                        >
+                                            {tag.text}
+                                        </span>
+                                    );
+                                })}
                             </div>
                         </div>
                     ))}
                 </div>
             ) : (
-                <p>데이터가 없습니다.</p>
+                <p className="text-lg font-bold leading-[19.8px] text-gray-50">데이터가 없습니다.</p>
             )}
         </React.Fragment>
     );

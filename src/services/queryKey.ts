@@ -3,4 +3,7 @@ export const QUERY_KEYS = {
         approvedConditionsLoansList: 'approvedConditionsLoansListDate',
         approvedConditionsLoansListCount: 'approvedConditionsLoansListCountDate',
     },
+    sortValue: {
+        isRateSort: 'isRateSort',
+    },
 };
