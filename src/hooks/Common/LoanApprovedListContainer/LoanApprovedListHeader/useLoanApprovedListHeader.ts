@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from 'react-query';
+import { useQueryClient } from 'react-query';
 
 const useLoanApprovedListHeader = () => {
     const queryClient = useQueryClient();

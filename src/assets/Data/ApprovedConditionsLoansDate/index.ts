@@ -3239,4 +3239,4 @@ export const LimitInquiryResponse_ExampleDummyData = {
             },
         },
     ],
-}
+};

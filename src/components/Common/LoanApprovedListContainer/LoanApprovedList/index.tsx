@@ -34,11 +34,12 @@ const LoanApprovedList = () => {
                                     <div className="flex gap-[6px] text-[13px] text-gray-40">{loan.product.name}</div>
                                 </div>
                             </div>
-                            <div className="ml-14 mt-4 flex w-full items-center justify-start gap-[22px] px-1 pb-[8px]">
-                                <div className="min-w-[116px] text-[20px] font-[500] text-black">
+
+                            <div className="mt-4 w-full items-center pb-[8px] relative flex">
+                                <div className="ml-15 text-[20px] font-[500] text-black">
                                     {approvedConditionsLoanRateDateFormatted(loan)}
                                 </div>
-                                <p className="min-w-[116px] text-[20px] font-[500] text-black">
+                                <p className="ml-15  text-[20px] font-[500] text-black">
                                     {approvedConditionsLoanLimitDateFormatted(loan)}
                                 </p>
                             </div>

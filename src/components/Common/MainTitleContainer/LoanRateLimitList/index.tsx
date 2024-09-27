@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoanRateLimitList } from '@/hooks/LoanApprovedListContainer/LoanRateLimitList/useLoanRateLimitList';
+import { useLoanRateLimitList } from '@/hooks/Common/LoanRateLimitList/useLoanRateLimitList';
 
 const LoanRateLimitList = () => {
     const {
@@ -25,8 +25,9 @@ const LoanRateLimitList = () => {
                             src={minRateLoan.product.bank.bankLogoUrl}
                             alt={`${minRateLoan.product.bank.name} icon error...`}
                         />
-                        <p className="mb-1 text-lg font-bold leading-[19.8px] text-black">{minLoanLimitFormatted}</p>
+
                         <p className="text-lg font-bold leading-[19.8px] text-gray-50">{minLoanRateFormatted}</p>
+                        <p className="mt-1.5 text-lg font-bold leading-[19.8px] text-black">{minLoanLimitFormatted}</p>
                     </div>
                 ) : (
                     <p className="text-lg font-bold leading-[19.8px] text-gray-50">상품이 없습니다.</p>
@@ -41,8 +42,8 @@ const LoanRateLimitList = () => {
                             src={maxLoan.product.bank.bankLogoUrl}
                             alt={`${maxLoan.product.bank.name} icon error...`}
                         />
-                        <p className="mb-1 text-lg font-bold leading-[19.8px] text-gray-50">{maxLoanRateFormatted}</p>
-                        <p className="text-lg font-bold leading-[19.8px] text-black">{maxLoanLimitFormatted}</p>
+                        <p className="text-lg font-bold leading-[19.8px] text-gray-50">{maxLoanRateFormatted}</p>
+                        <p className="mt-1.5 text-lg font-bold leading-[19.8px] text-black">{maxLoanLimitFormatted}</p>
                     </div>
                 ) : (
                     <p className="text-lg font-bold leading-[19.8px] text-gray-50">상품이 없습니다.</p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaClock } from 'react-icons/fa';
-import useCountdownToMidnight from '@/hooks/CountdownToMidnight/useCountdownToMidnight';
+import useCountdownToMidnight from '@/hooks/Common/CountdownToMidnight/useCountdownToMidnight';
 
 const CountdownToMidnight: React.FC = () => {
     const { timeLeft, hoursLeft } = useCountdownToMidnight();
@@ -8,7 +8,7 @@ const CountdownToMidnight: React.FC = () => {
     return (
         <div
             className={
-                hoursLeft <= 9
+                hoursLeft <= 8
                     ? 'flex items-center text-sm font-pretendard text-[#ff7a44] mt-3 mb-10'
                     : 'flex items-center text-sm font-pretendard text-uniqueGray-40 mt-3 mb-10'
             }
