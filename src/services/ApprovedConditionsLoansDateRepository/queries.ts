@@ -1,25 +1,20 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import LimitInquiryResponse_ExampleApprovedConditionsDataApi from '@/services/ApprovedConditionsLoansDateRepository/api';
+import ApprovedConditionsLoansDateApi from '@/services/ApprovedConditionsLoansDateRepository/api';
 import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
 import { QUERY_KEYS } from '@/services/queryKey';
+import useLoansListSortState from '@/services/LoansListSortStateRepository/queries';
 
 // [ 조건부 승인 대출 상품 리스트 쿼리 ]
-export const useApprovedConditionsLoansListDate = (options?: UseQueryOptions<LoansApply[], Error>) => {
-    return useQuery({
-        queryKey: [QUERY_KEYS.loan.approvedConditionsLoansList],
-        queryFn: () => LimitInquiryResponse_ExampleApprovedConditionsDataApi.getApprovedConditionsLoanListDateAPI(),
-        ...options,
-    });
-};
-
-// [ 조건부 승인 대출 상품 건수 쿼리 ]
-export const useApprovedConditionsLoansListCountDate = (options?: UseQueryOptions<number, Error>) => {
-    const { data: approvedConditionsLoanListDate, isLoading, error } = useApprovedConditionsLoansListDate();
+const useApprovedConditionsLoansListDate = (options?: UseQueryOptions<LoansApply[], Error>) => {
+    const { isRateSortState } = useLoansListSortState();
 
     return useQuery({
-        queryKey: [QUERY_KEYS.loan.approvedConditionsLoansListCount],
-        queryFn: () => Promise.resolve(approvedConditionsLoanListDate ? approvedConditionsLoanListDate.length : 0),
-        enabled: !!approvedConditionsLoanListDate && !isLoading && !error, // 데이터가 있을 때만 실행
-        ...options,
+        queryKey: [QUERY_KEYS.loanValue.approvedConditionsLoansListState, isRateSortState],
+        queryFn: async () => {
+            const data = await ApprovedConditionsLoansDateApi.getApprovedConditionsLoanListDateAPI(!!isRateSortState);
+            return data;
+        },
+        enabled: isRateSortState !== undefined,
     });
 };
+export default useApprovedConditionsLoansListDate;

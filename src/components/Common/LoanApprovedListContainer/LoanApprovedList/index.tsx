@@ -1,7 +1,7 @@
 import React from 'react';
 import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
 import { LoanApprovedListTagsColor } from '@/utils/LoanApprovedListTagsColor/';
-import { useApprovedConditionsLoansListDate } from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
 import useApprovedConditionsLoansFormat from '@/hooks/ApprovedConditionsLoansFormat/useApprovedConditionsLoansFormat';
 
 const LoanApprovedList = () => {

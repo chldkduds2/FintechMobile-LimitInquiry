@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import CountdownToMidnight from './CountdownToMidnight';
-import { useApprovedConditionsLoansListCountDate } from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useApprovedConditionsLoansListCountState from '@/services/ApprovedConditionsLoansListCountStateRepository/queries';
 
 const MainTitleContainer = () => {
-    const { data: approvedConditionsLoansListCountDate } = useApprovedConditionsLoansListCountDate();
+    const { data: approvedConditionsLoansListCountDate } = useApprovedConditionsLoansListCountState();
     const titleMessage = `오늘만 가능한 ${approvedConditionsLoansListCountDate}개 조건으로<br /> 바로 대출 받으세요`;
 
     return (

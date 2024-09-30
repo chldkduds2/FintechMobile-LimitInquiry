@@ -1,12 +1,15 @@
-import { useQueryClient } from 'react-query';
+import { UseQueryOptions, useQueryClient } from '@tanstack/react-query';
+import useLoansListSortState from '@/services/LoansListSortStateRepository/queries';
 
-const useLoanApprovedListHeader = () => {
-    const queryClient = useQueryClient();
+const useLoanApprovedListHeader = (options?: UseQueryOptions<boolean, Error>) => {
+    const { isRateSortState: isRateSortState, setIsRateSortedState } = useLoansListSortState();
 
-    const toggleRateSort = () => {
-        queryClient.setQueryData<boolean>('rateSort', (prev) => !prev);
+    const toggleSort = () => {
+        const newSortState = !isRateSortState;
+        setIsRateSortedState(newSortState);
     };
 
-    return { toggleRateSort };
+    return { isRateSortState, toggleSort };
 };
+
 export default useLoanApprovedListHeader;

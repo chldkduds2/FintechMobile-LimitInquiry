@@ -1,23 +1,32 @@
-import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import FintechMobalieLayout from './components/Common/FintechMobalieLayout';
-
-const HomePage = lazy(() => import('@/pages/Home/index'));
-
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Router from './router/index';
+import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Provider } from 'react-redux';
+import store from './store/index';
+import './style/globals.css';
 const App = () => {
+    const defaultQueryOptions = {
+        staleTime: 1000 * 60 * 10,
+        cacheTime: 1000 * 60 * 30,
+    };
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: defaultQueryOptions,
+        },
+    });
+
     return (
-        <FintechMobalieLayout>
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <Suspense fallback={<>Loading...</>}>
-                            <HomePage />
-                        </Suspense>
-                    }
-                />
-            </Routes>
-        </FintechMobalieLayout>
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <Router />
+                    <ReactQueryDevtools />
+                </Provider>
+            </BrowserRouter>
+        </QueryClientProvider>
     );
 };
 

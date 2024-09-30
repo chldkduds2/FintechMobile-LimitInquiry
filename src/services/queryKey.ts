@@ -1,9 +1,13 @@
 export const QUERY_KEYS = {
-    loan: {
-        approvedConditionsLoansList: 'approvedConditionsLoansListDate',
-        approvedConditionsLoansListCount: 'approvedConditionsLoansListCountDate',
+    loanValue: {
+        approvedConditionsLoansListState: 'approvedConditionsLoansListDateState',
+        approvedConditionsLoansListCountState: 'approvedConditionsLoansListCountDateState',
     },
     sortValue: {
-        isRateSort: 'isRateSort',
+        isRateSortState: 'isRateSortState',
+    },
+
+    filterValue: {
+        filterState: 'filterState',
     },
 };

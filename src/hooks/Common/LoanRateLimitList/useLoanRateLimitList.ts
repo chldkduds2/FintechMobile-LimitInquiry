@@ -1,4 +1,4 @@
-import { useApprovedConditionsLoansListDate } from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
 import useApprovedConditionsLoansFormat from '@/hooks/ApprovedConditionsLoansFormat/useApprovedConditionsLoansFormat';
 import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
 
