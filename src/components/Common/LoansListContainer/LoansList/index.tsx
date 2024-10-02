@@ -1,24 +1,19 @@
 import React from 'react';
 import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
-import { LoanApprovedListTagsColor } from '@/utils/LoanApprovedListTagsColor/';
-import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
-import useApprovedConditionsLoansFormat from '@/hooks/ApprovedConditionsLoansFormat/useApprovedConditionsLoansFormat';
+import { LoansListTagsColor } from '@/utils/LoansListTagsColor';
+import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
+import useLoansFilteringAndSortingList from '@/hooks/LoansFilteringAndSortingList/useLoansListFiltering';
 
-const LoanApprovedList = () => {
-    const { data: approvedConditionsLoanListDate = [], isLoading } =
-        useApprovedConditionsLoansListDate() as unknown as {
-            data: LoansApply[];
-            isLoading: boolean;
-        };
+const LoansList = () => {
+    const { approvedConditionsLoansFilteringList = [] } = useLoansFilteringAndSortingList();
 
-    const { approvedConditionsLoanLimitDateFormatted, approvedConditionsLoanRateDateFormatted } =
-        useApprovedConditionsLoansFormat();
+    const { loanLimitDateFormatted, loanRateDateFormatted } = useLoansFormat();
 
     return (
         <React.Fragment>
-            {approvedConditionsLoanListDate.length > 0 ? (
+            {approvedConditionsLoansFilteringList.length > 0 ? (
                 <div>
-                    {approvedConditionsLoanListDate.map((loan: LoansApply, index: number) => (
+                    {approvedConditionsLoansFilteringList.map((loan: LoansApply, index: number) => (
                         <div
                             className=" hover:active:bg-uniqueGray-99 flex-col w-full items-center border-t border-[#c1c2ca]/30 pt-[18px] pb-[18px]"
                             key={index}
@@ -37,15 +32,15 @@ const LoanApprovedList = () => {
 
                             <div className="mt-4 w-full items-center pb-[8px] relative flex">
                                 <div className="ml-15 text-[20px] font-[500] text-black">
-                                    {approvedConditionsLoanRateDateFormatted(loan)}
+                                    {loanRateDateFormatted(loan)}
                                 </div>
                                 <p className="ml-15  text-[20px] font-[500] text-black">
-                                    {approvedConditionsLoanLimitDateFormatted(loan)}
+                                    {loanLimitDateFormatted(loan)}
                                 </p>
                             </div>
                             <div className="flex items-center ml-15">
                                 {loan.product.tags.map((tag, tagIndex) => {
-                                    const { bg, text } = LoanApprovedListTagsColor[tag.text] || {
+                                    const { bg, text } = LoansListTagsColor[tag.text] || {
                                         bg: 'bg-gray-95',
                                         text: 'text-gray-40',
                                     };
@@ -78,4 +73,4 @@ const LoanApprovedList = () => {
     );
 };
 
-export default LoanApprovedList;
+export default LoansList;

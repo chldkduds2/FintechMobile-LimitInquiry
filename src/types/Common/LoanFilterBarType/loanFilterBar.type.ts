@@ -5,3 +5,10 @@ export enum LoanFilterBarActionType {
     REMOVE_FILTER = 'REMOVE_FILTER',
     RESET_FILTERS = 'RESET_FILTERS',
 }
+
+export interface LoanFilterBarStateType {
+    loansFiterBarState: string[];
+}
+export const initialLoanFilterBarState: LoanFilterBarStateType = {
+    loansFiterBarState: [],
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoanRateLimitList } from '@/hooks/Common/LoanRateLimitList/useLoanRateLimitList';
+import { useLoansRateLimitList } from '@/hooks/Common/LoansRateLimitList/LoansRateLimitList';
 
 const LoanRateLimitList = () => {
     const {
@@ -10,7 +10,7 @@ const LoanRateLimitList = () => {
         minLoanRateFormatted,
         maxLoanLimitFormatted,
         maxLoanRateFormatted,
-    } = useLoanRateLimitList();
+    } = useLoansRateLimitList();
 
     if (isLoading) return <div>Loading...</div>;
 

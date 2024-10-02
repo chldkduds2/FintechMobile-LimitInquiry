@@ -1,15 +1,10 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { loanFilterSelect } from '@/store/Selectors/Common/LoanFilterBarSelectors';
-import { addFilter, removeFilter, resetFilters } from '@/store/Actions/Common/LoanFilterBarAction';
 import { LoanFilterType } from '@/types/Common/LoanFilterBarType/loanFilterBar.type';
+import useLoanFilterBarState from '@/services/LoanFilterBarStateRepository/queries';
 
-export const useLoanFilterBar = () => {
-    const dispatch = useDispatch();
+export const useLoansFilterBar = () => {
     const filters: LoanFilterType[] = ['오늘입금', '계좌개설 없음', '중도상환수수료 없음', '1금융', '대출종류'];
-
-    // Redux로부터 상태 가져오기
-    const activeFilters = useSelector(loanFilterSelect);
+    const { loansFiterBarState: activeFilters, addFilter, removeFilter, resetFilter } = useLoanFilterBarState();
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [showRefresh, setShowRefresh] = useState<boolean>(false);
@@ -20,12 +15,12 @@ export const useLoanFilterBar = () => {
 
     const handleFilterClick = (filter: string) => {
         if (activeFilters.includes(filter)) {
-            dispatch(removeFilter(filter)); // 필터 제거 액션 디스패치
+            removeFilter(filter); // 필터 제거
         } else {
-            dispatch(addFilter(filter)); // 필터 추가 액션 디스패치
+            addFilter(filter); // 필터 추가
         }
 
-        // 새로고침 버튼 표시 여부 결정
+        // [ 새로고침 버튼 표시 여부 결정 ]
         if (activeFilters.length === 1 && activeFilters.includes(filter)) {
             setShowRefresh(false); // 마지막 필터가 제거되면 새로고침 버튼 숨기기
             toggleExpand(false); // 필터가 없으면 아코디언 접기
@@ -36,7 +31,7 @@ export const useLoanFilterBar = () => {
     };
 
     const handleRefreshClick = () => {
-        dispatch(resetFilters()); // 필터 초기화 액션 디스패치
+        resetFilter(); // 필터 초기화 액션 디스패치
         setShowRefresh(false); // 새로고침 버튼 숨기기
         toggleExpand(false); // 필터 초기화 시 아코디언 접기
     };

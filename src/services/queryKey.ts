@@ -1,7 +1,10 @@
 export const QUERY_KEYS = {
     loanValue: {
         approvedConditionsLoansListState: 'approvedConditionsLoansListDateState',
-        approvedConditionsLoansListCountState: 'approvedConditionsLoansListCountDateState',
+        approvedConditionsLoansListCountState: (approvedConditionsLoansFilteringListLength: number) => [
+            'approvedConditionsLoansListCountDateState',
+            `LoansFilteringListLength : ${approvedConditionsLoansFilteringListLength}`,
+        ],
     },
     sortValue: {
         isRateSortState: 'isRateSortState',

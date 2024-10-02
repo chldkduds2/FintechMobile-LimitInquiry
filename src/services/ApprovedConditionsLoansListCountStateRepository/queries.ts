@@ -1,24 +1,30 @@
 import { useQuery, UseQueryOptions, useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/services/queryKey';
-import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useLoansFilteringAndSortingList from '@/hooks/LoansFilteringAndSortingList/useLoansListFiltering';
+import {
+    LoansListCountStateType,
+    initialLoansListCountState,
+} from '@/types/ApprovedConditionsLoansListCountState/ApprovedConditionsLoansListCountState.type';
 
 // [ 조건부 승인 대출 상품 건수 쿼리 ]
-const useApprovedConditionsLoansListCountState = (options?: UseQueryOptions<number, Error>) => {
+const useApprovedConditionsLoansListCountState = (options?: UseQueryOptions<LoansListCountStateType, Error>) => {
     const queryClient = useQueryClient();
-    const { data: approvedConditionsLoanListDate, isLoading, error } = useApprovedConditionsLoansListDate();
+    const { approvedConditionsLoansFilteringList } = useLoansFilteringAndSortingList();
 
-    return useQuery<number>({
-        queryKey: [QUERY_KEYS.loanValue.approvedConditionsLoansListCountState],
+    // approvedConditionsLoansFilteringList의 길이를 기반으로 쿼리 키 생성
+
+    const { data: loansListCountState = initialLoansListCountState } = useQuery<LoansListCountStateType>({
+        queryKey: QUERY_KEYS.loanValue.approvedConditionsLoansListCountState(
+            approvedConditionsLoansFilteringList?.length ?? 0
+        ),
         queryFn: () => {
-            const loansListCountState = queryClient.getQueryData<number>([
-                QUERY_KEYS.loanValue.approvedConditionsLoansListCountState,
-            ]);
-
-            return loansListCountState !== undefined
-                ? loansListCountState
-                : (approvedConditionsLoanListDate?.length ?? 0);
+            return { loansListCountState: approvedConditionsLoansFilteringList?.length ?? 0 };
         },
-        enabled: !!approvedConditionsLoanListDate && !isLoading && !error,
+        enabled: true,
+        staleTime: 0,
     });
+
+    return { loansListCountState: loansListCountState.loansListCountState };
 };
+
 export default useApprovedConditionsLoansListCountState;

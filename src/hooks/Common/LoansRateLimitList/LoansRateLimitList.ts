@@ -1,15 +1,13 @@
-import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
-import useApprovedConditionsLoansFormat from '@/hooks/ApprovedConditionsLoansFormat/useApprovedConditionsLoansFormat';
+import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
 import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
 
-export const useLoanRateLimitList = () => {
-    const { data: approvedConditionsLoanListDate = [], isLoading } =
-        useApprovedConditionsLoansListDate() as unknown as {
-            data: LoansApply[];
-            isLoading: boolean;
-        };
-    const { approvedConditionsLoanLimitDateFormatted, approvedConditionsLoanRateDateFormatted } =
-        useApprovedConditionsLoansFormat();
+export const useLoansRateLimitList = () => {
+    const { data: approvedConditionsLoanListDate = [], isLoading } = useLoansListDate() as unknown as {
+        data: LoansApply[];
+        isLoading: boolean;
+    };
+    const { loanLimitDateFormatted, loanRateDateFormatted } = useLoansFormat();
 
     // [ 최대한도 대출 리스트 ]
     const maxLoan = approvedConditionsLoanListDate.reduce((max, loan) => {
@@ -24,14 +22,14 @@ export const useLoanRateLimitList = () => {
     }, {} as LoansApply);
 
     // [ 최대한도 대출 한도 포멧 데이터 ]
-    const maxLoanLimitFormatted = approvedConditionsLoanLimitDateFormatted(maxLoan);
+    const maxLoanLimitFormatted = loanLimitDateFormatted(maxLoan);
     // [ 최대한도 대출 금리 포멧 데이터 ]
-    const maxLoanRateFormatted = approvedConditionsLoanRateDateFormatted(maxLoan);
+    const maxLoanRateFormatted = loanRateDateFormatted(maxLoan);
 
     // [ 최저금리 대출 한도 포멧 데이터 ]
-    const minLoanLimitFormatted = approvedConditionsLoanLimitDateFormatted(minRateLoan);
+    const minLoanLimitFormatted = loanLimitDateFormatted(minRateLoan);
     // [ 최저금리 대출 금리 포멧 데이터 ]
-    const minLoanRateFormatted = approvedConditionsLoanRateDateFormatted(minRateLoan);
+    const minLoanRateFormatted = loanRateDateFormatted(minRateLoan);
 
     return {
         approvedConditionsLoanListDate,

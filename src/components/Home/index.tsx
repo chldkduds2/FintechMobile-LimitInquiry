@@ -1,9 +1,9 @@
 import React from 'react';
 import MainTitleContainer from '../Common/MainTitleContainer/index';
 import LoanRateLimitList from '../Common/MainTitleContainer/LoanRateLimitList';
-import LoanFilterBar from '../Common/LoanFilterBar/index';
+import LoanFilterBar from '../Common/LoansFilterBar/index';
 import FintechMobalieContentLayout from '@/components/Common/FintechMobalieLayout/FintechMobalieContentLayout/index';
-import LoanApprovedListContainert from '../Common/LoanApprovedListContainer/index';
+import LoansListContainert from '../Common/LoansListContainer/index';
 
 const Home = () => {
     return (
@@ -15,7 +15,7 @@ const Home = () => {
             <div className="h-[10px] w-full bg-gray-99" />
             <FintechMobalieContentLayout>
                 <LoanFilterBar />
-                <LoanApprovedListContainert />
+                <LoansListContainert />
             </FintechMobalieContentLayout>
         </React.Fragment>
     );

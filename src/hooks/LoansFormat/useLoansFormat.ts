@@ -1,6 +1,6 @@
 import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
 
-const useApprovedConditionsLoansFormat = () => {
+const useLoansFormat = () => {
     // [ 한도 포멧 함수 ]
     const loanLimitformatAmount = (amount: number) => {
         if (amount >= 10000) {
@@ -15,18 +15,18 @@ const useApprovedConditionsLoansFormat = () => {
         return amount + '%';
     };
 
-    const approvedConditionsLoanLimitDateFormatted = (loan: LoansApply) => {
+    const loanLimitDateFormatted = (loan: LoansApply) => {
         return loan.condition?.loanLimit ? loanLimitformatAmount(loan.condition.loanLimit / 10000) : '정보 없음';
     };
 
-    const approvedConditionsLoanRateDateFormatted = (loan: LoansApply) => {
+    const loanRateDateFormatted = (loan: LoansApply) => {
         return loan.condition?.loanRate ? loanRateformatAmount(loan.condition.loanRate) : '정보 없음';
     };
 
     return {
-        approvedConditionsLoanLimitDateFormatted,
-        approvedConditionsLoanRateDateFormatted,
+        loanLimitDateFormatted,
+        loanRateDateFormatted,
     };
 };
 
-export default useApprovedConditionsLoansFormat;
+export default useLoansFormat;

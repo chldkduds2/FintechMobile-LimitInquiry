@@ -1,11 +1,11 @@
 import React from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { HiOutlineRefresh } from 'react-icons/hi';
-import { useLoanFilterBar } from '@/hooks/Common/LoanFilterBar/useLoanFilterBar';
+import { useLoansFilterBar } from '@/hooks/Common/LoansFilterBar/useLoansFilterBar';
 
-const LoanFilterBar = () => {
+const LoansFilterBar = () => {
     const { isExpanded, filters, activeFilters, showRefresh, toggleExpand, handleRefreshClick, handleFilterClick } =
-        useLoanFilterBar();
+        useLoansFilterBar();
 
     return (
         <div className="relative mt-5 overflow-hidden">
@@ -48,4 +48,4 @@ const LoanFilterBar = () => {
     );
 };
 
-export default LoanFilterBar;
+export default LoansFilterBar;
