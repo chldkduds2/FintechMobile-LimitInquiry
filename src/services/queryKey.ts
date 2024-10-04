@@ -11,6 +11,8 @@ export const QUERY_KEYS = {
     },
 
     filterValue: {
-        filterState: 'filterState',
+        loansFiterBarState: 'loansFiterBarState',
+        loansTypeFilterModalState: 'loansTypeFilterModalState',
+        isLoansTypeModalOpenState: 'isLoansTypeModalOpenState',
     },
 };

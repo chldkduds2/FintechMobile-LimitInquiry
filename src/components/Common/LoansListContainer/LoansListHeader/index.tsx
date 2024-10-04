@@ -1,5 +1,5 @@
 import { TbArrowsSort } from 'react-icons/tb';
-import useLoanListHeader from '@/hooks/Common/LoansListContainer/LoansListHeader/useLoansListHeader';
+import useLoanListHeader from '@/hooks/Common/LoansListHeader/useLoansListHeader';
 import useLoansListCountState from '@/services/ApprovedConditionsLoansListCountStateRepository/queries';
 
 const LoansListHeader = () => {

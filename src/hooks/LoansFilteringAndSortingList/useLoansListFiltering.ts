@@ -1,6 +1,6 @@
 import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
 import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
-import useLoanFilterBarState from '@/services/LoanFilterBarStateRepository/queries';
+import useLoanFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
 import useLoansListSortState from '@/services/LoansListSortStateRepository/queries';
 
 const useLoansFilteringAndSortingList = () => {

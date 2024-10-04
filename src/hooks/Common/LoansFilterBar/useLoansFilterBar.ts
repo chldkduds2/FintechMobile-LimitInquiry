@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { LoanFilterType } from '@/types/Common/LoanFilterBarType/loanFilterBar.type';
-import useLoanFilterBarState from '@/services/LoanFilterBarStateRepository/queries';
+import { LoansFilterType } from '@/types/Common/LoanFilterBarType/loanFilterBar.type';
+import useLoansFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
 
 export const useLoansFilterBar = () => {
-    const filters: LoanFilterType[] = ['오늘입금', '계좌개설 없음', '중도상환수수료 없음', '1금융', '대출종류'];
-    const { loansFiterBarState: activeFilters, addFilter, removeFilter, resetFilter } = useLoanFilterBarState();
+    const filters: LoansFilterType[] = ['오늘입금', '계좌개설 없음', '중도상환수수료 없음', '1금융', '대출종류'];
+
+    const { loansFiterBarState, addFilter, removeFilter, resetFilter } = useLoansFilterBarState();
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [showRefresh, setShowRefresh] = useState<boolean>(false);
@@ -14,14 +15,14 @@ export const useLoansFilterBar = () => {
     };
 
     const handleFilterClick = (filter: string) => {
-        if (activeFilters.includes(filter)) {
+        if (loansFiterBarState.includes(filter)) {
             removeFilter(filter); // 필터 제거
         } else {
             addFilter(filter); // 필터 추가
         }
 
         // [ 새로고침 버튼 표시 여부 결정 ]
-        if (activeFilters.length === 1 && activeFilters.includes(filter)) {
+        if (loansFiterBarState.length === 1 && loansFiterBarState.includes(filter)) {
             setShowRefresh(false); // 마지막 필터가 제거되면 새로고침 버튼 숨기기
             toggleExpand(false); // 필터가 없으면 아코디언 접기
         } else {
@@ -36,5 +37,13 @@ export const useLoansFilterBar = () => {
         toggleExpand(false); // 필터 초기화 시 아코디언 접기
     };
 
-    return { filters, isExpanded, activeFilters, showRefresh, toggleExpand, handleFilterClick, handleRefreshClick };
+    return {
+        filters,
+        isExpanded,
+        loansFiterBarState,
+        showRefresh,
+        toggleExpand,
+        handleFilterClick,
+        handleRefreshClick,
+    };
 };
