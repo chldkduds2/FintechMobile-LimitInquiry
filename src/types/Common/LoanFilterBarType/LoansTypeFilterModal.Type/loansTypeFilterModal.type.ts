@@ -1,4 +1,4 @@
-export type LoansTypeFilterType = '신용대출' | '주택 담보대출' | '자동차 담보대출' | '대환대출';
+export type LoansTypeFilterType = '신용대출' | '주택담보대출' | '자동차담보대출' | '대환대출';
 
 export enum LoansTypeFilterModalActionType {
     ADD_FILTER = 'ADD_FILTER',

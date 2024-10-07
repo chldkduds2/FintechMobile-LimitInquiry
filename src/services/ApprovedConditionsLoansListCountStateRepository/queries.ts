@@ -8,11 +8,9 @@ import {
 
 // [ 조건부 승인 대출 상품 건수 쿼리 ]
 const useApprovedConditionsLoansListCountState = (options?: UseQueryOptions<LoansListCountStateType, Error>) => {
-    const queryClient = useQueryClient();
     const { approvedConditionsLoansFilteringList } = useLoansFilteringAndSortingList();
 
     // approvedConditionsLoansFilteringList의 길이를 기반으로 쿼리 키 생성
-
     const { data: loansListCountState = initialLoansListCountState } = useQuery<LoansListCountStateType>({
         queryKey: QUERY_KEYS.loanValue.approvedConditionsLoansListCountState(
             approvedConditionsLoansFilteringList?.length ?? 0
@@ -20,7 +18,7 @@ const useApprovedConditionsLoansListCountState = (options?: UseQueryOptions<Loan
         queryFn: () => {
             return { loansListCountState: approvedConditionsLoansFilteringList?.length ?? 0 };
         },
-        enabled: true,
+        enabled: !!approvedConditionsLoansFilteringList,
         staleTime: 0,
     });
 

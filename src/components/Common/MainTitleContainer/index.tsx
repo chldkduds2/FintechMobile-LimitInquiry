@@ -1,9 +1,9 @@
 import CountdownToMidnight from './CountdownToMidnight';
-import useApprovedConditionsLoansListCountState from '@/services/ApprovedConditionsLoansListCountStateRepository/queries';
+import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
 
 const MainTitleContainer = () => {
-    const { loansListCountState } = useApprovedConditionsLoansListCountState();
-    const titleMessage = `오늘만 가능한 ${loansListCountState}개 조건으로<br /> 바로 대출 받으세요`;
+    const { data: approvedConditionsLoanListDate } = useApprovedConditionsLoansListDate();
+    const titleMessage = `오늘만 가능한 ${approvedConditionsLoanListDate?.length}개 조건으로<br /> 바로 대출 받으세요`;
 
     return (
         <div>

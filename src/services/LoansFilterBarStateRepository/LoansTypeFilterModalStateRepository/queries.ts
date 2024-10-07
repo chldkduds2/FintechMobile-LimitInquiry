@@ -1,4 +1,4 @@
-import { Query, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/services/queryKey';
 import {
     LoansTypeFilterModalStateType,
@@ -40,7 +40,7 @@ const useLoansTypeFilterBarState = () => {
             [QUERY_KEYS.filterValue.loansTypeFilterModalState],
             (oldState = initialLoansTypeFilterModalState) => ({
                 ...oldState,
-                loansTypeFilterModalState: [...new Set([...oldState.loansTypeFilterModalState, newLoansTypeFilter])],
+                loansTypeFilterModalState: [...oldState.loansTypeFilterModalState, newLoansTypeFilter],
             })
         );
     };
@@ -52,7 +52,7 @@ const useLoansTypeFilterBarState = () => {
             (oldState = initialLoansTypeFilterModalState) => ({
                 ...oldState,
                 loansTypeFilterModalState: oldState.loansTypeFilterModalState.filter(
-                    (f) => f !== removeLoansTypeFilter
+                    (loanType) => loanType !== removeLoansTypeFilter
                 ),
             })
         );
@@ -80,4 +80,5 @@ const useLoansTypeFilterBarState = () => {
         setIsLoansTypeModalOpenState,
     };
 };
+
 export default useLoansTypeFilterBarState;

@@ -40,7 +40,9 @@ const LoansFilterBar = () => {
                         {filters.map((filter, index) => (
                             <button
                                 key={index}
-                                onClick={() => handleFilterClick(filter)}
+                                onClick={() => {
+                                    handleFilterClick(filter);
+                                }}
                                 className={`h-[29px] flex cursor-pointer rounded-[26px] px-3 text-center border  active:border active:border-gray-80 ${
                                     loansFiterBarState.includes(filter)
                                         ? 'bg-indigo-50 text-white'
@@ -54,9 +56,17 @@ const LoansFilterBar = () => {
                                     >
                                         <span className="leading-[28px] mr-1">{filter}</span>
                                         {isLoansTypeModalOpenState ? (
-                                            <FaChevronDown size={10} className="mt-2" color="white" />
+                                            <FaChevronDown
+                                                size={10}
+                                                className="mt-2"
+                                                color={loansFiterBarState.includes(filter) ? 'white' : 'gray'}
+                                            />
                                         ) : (
-                                            <FaChevronUp size={10} className="mt-2" color="gray" />
+                                            <FaChevronUp
+                                                size={10}
+                                                className="mt-2"
+                                                color={loansFiterBarState.includes(filter) ? 'white' : 'gray'}
+                                            />
                                         )}
                                     </span>
                                 ) : (

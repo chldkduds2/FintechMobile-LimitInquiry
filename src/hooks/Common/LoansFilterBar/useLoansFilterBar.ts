@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { LoansFilterType } from '@/types/Common/LoanFilterBarType/loanFilterBar.type';
 import useLoansFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
+import useLoansTypeFilterBarState from '@/services/LoansFilterBarStateRepository/LoansTypeFilterModalStateRepository/queries';
 
 export const useLoansFilterBar = () => {
     const filters: LoansFilterType[] = ['오늘입금', '계좌개설 없음', '중도상환수수료 없음', '1금융', '대출종류'];
 
     const { loansFiterBarState, addFilter, removeFilter, resetFilter } = useLoansFilterBarState();
+    const { resetLoansTypeFilter } = useLoansTypeFilterBarState();
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [showRefresh, setShowRefresh] = useState<boolean>(false);
@@ -15,6 +17,10 @@ export const useLoansFilterBar = () => {
     };
 
     const handleFilterClick = (filter: string) => {
+        // [ 윈도우 스크롤 이동]
+        if (window.scrollY < 320) {
+            window.scrollTo({ left: 0, top: 320, behavior: 'smooth' });
+        }
         if (loansFiterBarState.includes(filter)) {
             removeFilter(filter); // 필터 제거
         } else {
@@ -35,6 +41,7 @@ export const useLoansFilterBar = () => {
         resetFilter(); // 필터 초기화 액션 디스패치
         setShowRefresh(false); // 새로고침 버튼 숨기기
         toggleExpand(false); // 필터 초기화 시 아코디언 접기
+        resetLoansTypeFilter(); // 대출종류 필터 초기화
     };
 
     return {

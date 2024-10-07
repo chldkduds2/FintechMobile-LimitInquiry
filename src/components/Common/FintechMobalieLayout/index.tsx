@@ -7,7 +7,7 @@ const FintechMobalieLayout = ({ children }: PropsWithChildren) => {
         <div className="flex justify-center mt-10 contain-conten">
             <div className="max-w-[427px] font-sans">
                 {children}
-                {/* <Footer /> */}
+                <Footer />
             </div>
         </div>
     );
