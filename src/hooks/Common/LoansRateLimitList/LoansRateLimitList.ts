@@ -1,9 +1,11 @@
 import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
 import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
-import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
+import { LoansApply } from '@/types/ApprovedConditionsLoansDateTyep/approvedConditionsLoansDate.type';
 
 export const useLoansRateLimitList = () => {
-    const { data: approvedConditionsLoanListDate = [], isLoading } = useLoansListDate() as unknown as {
+    const { data: approvedConditionsLoanListDate = [], isLoading } = useLoansListDate(
+        'condition_approved'
+    ) as unknown as {
         data: LoansApply[];
         isLoading: boolean;
     };

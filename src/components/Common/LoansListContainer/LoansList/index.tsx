@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
+import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
 import useLoansFilteringAndSortingList from '@/hooks/LoansFilteringAndSortingList/useLoansListFiltering';
 import { LoansListTagsColor } from '@/utils/LoansListTagsColor';
 import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
@@ -9,9 +9,8 @@ import { HiOutlineRefresh } from 'react-icons/hi';
 
 const LoansList = () => {
     const { approvedConditionsLoansFilteringList = [] } = useLoansFilteringAndSortingList();
-
     const { loanLimitDateFormatted, loanRateDateFormatted } = useLoansFormat();
-    const { handleRefreshClick } = useLoansLis();
+    const { handleLoanClick, handleRefreshClick } = useLoansLis();
 
     return (
         <React.Fragment>
@@ -19,8 +18,9 @@ const LoansList = () => {
                 <div>
                     {approvedConditionsLoansFilteringList.map((loan: LoansApply, index: number) => (
                         <div
-                            className=" hover:active:bg-uniqueGray-99 flex-col w-full items-center border-t border-[#c1c2ca]/30 pt-[18px] pb-[18px]"
+                            className="hover:active:bg-uniqueGray-99 flex-col w-full items-center border-t border-[#c1c2ca]/30 pt-[18px] pb-[18px] cursor-pointer"
                             key={index}
+                            onClick={() => handleLoanClick(loan.id)}
                         >
                             <div className="flex">
                                 <img
@@ -38,7 +38,7 @@ const LoansList = () => {
                                 <span className="ml-15 text-[20px] font-[500] text-black">
                                     {loanRateDateFormatted(loan)}
                                 </span>
-                                <span className="ml-15  text-[20px] font-[500] text-black">
+                                <span className="ml-15 text-[20px] font-[500] text-black">
                                     {loanLimitDateFormatted(loan)}
                                 </span>
                             </div>
@@ -71,7 +71,7 @@ const LoansList = () => {
                     ))}
                 </div>
             ) : (
-                <div className="flex justify-center text-center items-center flex-col w-full border-t border-[#c1c2ca]/30 p-10">
+                <div className="flex justify-center text-center items-center flex-col w-full h-full border-t border-[#c1c2ca]/30 p-10">
                     <div className="m-auto mt-4">
                         <TbExclamationCircle size={60} color="gray" />
                     </div>

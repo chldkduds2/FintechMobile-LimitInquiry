@@ -1,12 +1,12 @@
-import { LoansApply } from '@/types/ApprovedConditionsLoansDate/approvedConditionsLoansDate.type';
+import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
 import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
 import useLoanFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
 import useLoansListSortState from '@/services/LoansListSortStateRepository/queries';
-import { LoansTypeFilterType } from '@/types/Common/LoanFilterBarType/LoansTypeFilterModal.Type/loansTypeFilterModal.type';
+import { LoansTypeFilterType } from '@/types/Common/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
 import useLoansTypeFilterBarState from '@/services/LoansFilterBarStateRepository/LoansTypeFilterModalStateRepository/queries';
 
 const useLoansFilteringAndSortingList = () => {
-    const { data: approvedConditionsLoanListDate, isLoading, error } = useLoansListDate();
+    const { data: approvedConditionsLoanListDate, isLoading, error } = useLoansListDate('condition_approved');
     const { loansFiterBarState } = useLoanFilterBarState();
     const { isRateSortState } = useLoansListSortState();
     const { loansTypeFilterModalState } = useLoansTypeFilterBarState();

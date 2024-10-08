@@ -17,10 +17,6 @@ export const useLoansFilterBar = () => {
     };
 
     const handleFilterClick = (filter: string) => {
-        // [ 윈도우 스크롤 이동]
-        if (window.scrollY < 320) {
-            window.scrollTo({ left: 0, top: 320, behavior: 'smooth' });
-        }
         if (loansFiterBarState.includes(filter)) {
             removeFilter(filter); // 필터 제거
         } else {

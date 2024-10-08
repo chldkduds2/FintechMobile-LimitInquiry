@@ -200,6 +200,15 @@ module.exports = {
             white: '#FFFFFF',
         },
         extend: {
+            scrollbar: {
+                hide: {
+                    '&::-webkit-scrollbar': {
+                        display: 'none',
+                    },
+                    '-ms-overflow-style': 'none', // IE and Edge
+                    'scrollbar-width': 'none', // Firefox
+                },
+            },
             fontFamily: {
                 sans: [
                     'Spoqa Han Sans Neo',
@@ -268,6 +277,13 @@ module.exports = {
         plugin(function ({ addUtilities }) {
             addUtilities(
                 {
+                    '.no-scrollbar': {
+                        '&::-webkit-scrollbar': {
+                            display: 'none',
+                        },
+                        '-ms-overflow-style': 'none', // IE and Edge
+                        'scrollbar-width': 'none', // Firefox
+                    },
                     '.scrollbar-hide': {
                         /* IE and Edge */
                         '-ms-overflow-style': 'none',

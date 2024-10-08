@@ -3,24 +3,10 @@ import { QUERY_KEYS } from '@/services/queryKey';
 import {
     LoansTypeFilterModalStateType,
     initialLoansTypeFilterModalState,
-    IsLoansTypeModalOpenStateType,
-    initialIsLoansTypeModalOpenState,
-} from '@/types/Common/LoanFilterBarType/LoansTypeFilterModal.Type/loansTypeFilterModal.type';
+} from '@/types/Common/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
 
 const useLoansTypeFilterBarState = () => {
     const queryClient = useQueryClient();
-
-    // [ 대출종류 모달 상태 ]
-    const { data: isLoansTypeModalOpenState = initialIsLoansTypeModalOpenState } =
-        useQuery<IsLoansTypeModalOpenStateType>({
-            queryKey: [QUERY_KEYS.filterValue.isLoansTypeModalOpenState],
-            queryFn: () => {
-                const state = queryClient.getQueryData<IsLoansTypeModalOpenStateType>([
-                    QUERY_KEYS.filterValue.isLoansTypeModalOpenState,
-                ]);
-                return state !== undefined ? state : initialIsLoansTypeModalOpenState;
-            },
-        });
 
     // [대출종류 필터링 상태 ]
     const { data: loansTypeFilterModalState = initialLoansTypeFilterModalState } =
@@ -65,19 +51,11 @@ const useLoansTypeFilterBarState = () => {
         });
     };
 
-    const setIsLoansTypeModalOpenState = (newLoansTypeModalOpenState: boolean) => {
-        queryClient.setQueryData<IsLoansTypeModalOpenStateType>([QUERY_KEYS.filterValue.isLoansTypeModalOpenState], {
-            isLoansTypeModalOpenState: newLoansTypeModalOpenState,
-        });
-    };
-
     return {
         loansTypeFilterModalState: loansTypeFilterModalState.loansTypeFilterModalState,
-        isLoansTypeModalOpenState: isLoansTypeModalOpenState.isLoansTypeModalOpenState,
         addLoansTypeFilter,
         removeLoansTypeFilter,
         resetLoansTypeFilter,
-        setIsLoansTypeModalOpenState,
     };
 };
 

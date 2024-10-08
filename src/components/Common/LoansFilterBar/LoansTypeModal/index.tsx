@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { IoClose } from 'react-icons/io5';
 import { HiOutlineRefresh } from 'react-icons/hi';

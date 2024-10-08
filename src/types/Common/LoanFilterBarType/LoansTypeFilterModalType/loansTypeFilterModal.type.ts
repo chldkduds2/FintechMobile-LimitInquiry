@@ -12,10 +12,3 @@ export interface LoansTypeFilterModalStateType {
 export const initialLoansTypeFilterModalState: LoansTypeFilterModalStateType = {
     loansTypeFilterModalState: [],
 };
-
-export interface IsLoansTypeModalOpenStateType {
-    isLoansTypeModalOpenState: boolean;
-}
-export const initialIsLoansTypeModalOpenState: IsLoansTypeModalOpenStateType = {
-    isLoansTypeModalOpenState: false,
-};

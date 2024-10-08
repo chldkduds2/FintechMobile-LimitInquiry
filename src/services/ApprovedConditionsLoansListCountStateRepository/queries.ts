@@ -4,7 +4,7 @@ import useLoansFilteringAndSortingList from '@/hooks/LoansFilteringAndSortingLis
 import {
     LoansListCountStateType,
     initialLoansListCountState,
-} from '@/types/ApprovedConditionsLoansListCountState/ApprovedConditionsLoansListCountState.type';
+} from '@/types/ApprovedConditionsLoansListCountStateType/ApprovedConditionsLoansListCountState.type';
 
 // [ 조건부 승인 대출 상품 건수 쿼리 ]
 const useApprovedConditionsLoansListCountState = (options?: UseQueryOptions<LoansListCountStateType, Error>) => {
