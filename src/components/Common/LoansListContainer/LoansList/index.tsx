@@ -6,6 +6,7 @@ import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
 import useLoansLis from '@/hooks/Common/LoansListContainer/LoansList/useLoansList';
 import { TbExclamationCircle } from 'react-icons/tb';
 import { HiOutlineRefresh } from 'react-icons/hi';
+import { IoIosArrowForward } from 'react-icons/io';
 
 const LoansList = () => {
     const { approvedConditionsLoansFilteringList = [] } = useLoansFilteringAndSortingList();
@@ -13,25 +14,30 @@ const LoansList = () => {
     const { handleLoanClick, handleRefreshClick } = useLoansLis();
 
     return (
-        <React.Fragment>
+        <div className="mb-10 border-t border-[#c1c2ca]/30">
             {approvedConditionsLoansFilteringList.length > 0 ? (
                 <div>
                     {approvedConditionsLoansFilteringList.map((loan: LoansApply, index: number) => (
                         <div
-                            className="hover:active:bg-uniqueGray-99 flex-col w-full items-center border-t border-[#c1c2ca]/30 pt-[18px] pb-[18px] cursor-pointer"
+                            className="hover:active:bg-uniqueGray-99 flex-col w-full items-center  border-b border-[#c1c2ca]/30 pt-[18px] pb-[18px] cursor-pointer"
                             key={index}
                             onClick={() => handleLoanClick(loan.id)}
                         >
-                            <div className="flex">
-                                <img
-                                    className="h-[40px] w-[40px] align-top"
-                                    src={loan.product.bank.bankLogoUrl}
-                                    alt={loan.product.bank.name}
-                                />
-                                <div className="w-full ml-5">
-                                    <span className="text-[16px] font-[500]">{loan.product.bank.name}</span>
-                                    <span className="flex gap-[6px] text-[13px] text-gray-40">{loan.product.name}</span>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center">
+                                    <img
+                                        className="h-[40px] w-[40px] align-top"
+                                        src={loan.product.bank.bankLogoUrl}
+                                        alt={loan.product.bank.name}
+                                    />
+                                    <div className="w-full ml-5">
+                                        <span className="text-[16px] font-[500]">{loan.product.bank.name}</span>
+                                        <span className="flex gap-[6px] text-[13px] text-gray-40">
+                                            {loan.product.name}
+                                        </span>
+                                    </div>
                                 </div>
+                                <IoIosArrowForward className="ml-auto" color="#B3B3B3" />
                             </div>
 
                             <div className="mt-4 w-full items-center pb-[8px] relative flex">
@@ -89,7 +95,7 @@ const LoansList = () => {
                     </button>
                 </div>
             )}
-        </React.Fragment>
+        </div>
     );
 };
 

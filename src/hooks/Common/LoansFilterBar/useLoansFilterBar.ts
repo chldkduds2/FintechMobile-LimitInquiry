@@ -9,7 +9,7 @@ export const useLoansFilterBar = () => {
     const { loansFiterBarState, addFilter, removeFilter, resetFilter } = useLoansFilterBarState();
     const { resetLoansTypeFilter } = useLoansTypeFilterBarState();
 
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState<boolean>(true);
     const [showRefresh, setShowRefresh] = useState<boolean>(false);
 
     const toggleExpand = (forceExpand?: boolean) => {

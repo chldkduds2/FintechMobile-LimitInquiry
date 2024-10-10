@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useLoansFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
 import useLoansTypeFilterBarState from '@/services/LoansFilterBarStateRepository/LoansTypeFilterModalStateRepository/queries';
 
@@ -6,9 +6,10 @@ const useLoansList = () => {
     const navigate = useNavigate();
     const { resetFilter } = useLoansFilterBarState();
     const { resetLoansTypeFilter } = useLoansTypeFilterBarState();
+    const { loanId } = useParams();
 
     const handleLoanClick = (loanId: string) => {
-        navigate(`/loans/${loanId}`);
+        navigate(`/loansDetail/${loanId}`);
     };
 
     const handleRefreshClick = () => {
@@ -17,4 +18,5 @@ const useLoansList = () => {
     };
     return { handleLoanClick, handleRefreshClick };
 };
+
 export default useLoansList;

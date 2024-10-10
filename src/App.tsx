@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'react-redux';
 import store from './store/index';
+import FintechMobalieLayout from '@/components/Common/FintechMobalieLayout/index';
 import './style/globals.css';
 const App = () => {
     const defaultQueryOptions = {
@@ -22,7 +23,9 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <Provider store={store}>
-                    <Router />
+                    <FintechMobalieLayout>
+                        <Router />
+                    </FintechMobalieLayout>
                     <ReactQueryDevtools />
                 </Provider>
             </BrowserRouter>

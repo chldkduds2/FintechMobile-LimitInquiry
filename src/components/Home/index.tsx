@@ -4,6 +4,8 @@ import LoanRateLimitList from '../Common/MainTitleContainer/LoanRateLimitList';
 import LoanFilterBar from '../Common/LoansFilterBar/index';
 import FintechMobalieContentLayout from '@/components/Common/FintechMobalieLayout/FintechMobalieContentLayout/index';
 import LoansListContainert from '../Common/LoansListContainer/index';
+import Footer from '@/components/Common/Footer/index';
+import FintechMobalieLayout from '@/components/Common/FintechMobalieLayout/index';
 
 const Home = () => {
     return (
@@ -17,6 +19,7 @@ const Home = () => {
                 <LoanFilterBar />
                 <LoansListContainert />
             </FintechMobalieContentLayout>
+            <Footer />
         </React.Fragment>
     );
 };

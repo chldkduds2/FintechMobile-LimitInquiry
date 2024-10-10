@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { IoClose } from 'react-icons/io5';
 import useApprovedDataListClickModal from '@/hooks/Common/Footer/ApprovedDataListClickContainer/ApprovedDataListClickModal/useApprovedDataListClickModal';
 import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
-import { BsFillExclamationCircleFill } from 'react-icons/bs';
 
 const ApprovedDataListClickModal = () => {
     const {
         modalPortal,
+        notApprovedLoansDataModalOpenState,
         isFailedDataListDetailBtnClick,
         isRejectedDataListDetailBtnClick,
         handlerApprovedDataListClickModalOpen,
@@ -18,8 +18,12 @@ const ApprovedDataListClickModal = () => {
     const { data: rejectedConditionsLoansListDate = [] } = useApprovedConditionsLoansListDate('condition_rejected');
 
     return ReactDOM.createPortal(
-        <div className="fixed top-0 bottom-0 left-0 z-50 flex items-center justify-center w-full">
-            <div className="w-[27rem] max-h-[40rem] p-7 bg-white shadow-lg overflow-y-auto no-scrollbar">
+        <div
+            className={`fixed top-0 bottom-0 left-0 z-50 flex items-center justify-center w-full transition-opacity duration-300 ${notApprovedLoansDataModalOpenState ? 'opacity-100' : 'opacity-0'}`}
+        >
+            <div
+                className={`w-[27rem] max-h-[40rem] p-7 bg-white shadow-lg overflow-y-auto no-scrollbar transform transition-transform duration-300 ${notApprovedLoansDataModalOpenState ? 'scale-100' : 'scale-95'}`}
+            >
                 <div className="relative flex justify-center w-full">
                     <IoClose
                         className="absolute left-0 cursor-pointer"

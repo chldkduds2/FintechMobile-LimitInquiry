@@ -29,4 +29,5 @@ const useApprovedDataListClickModal = () => {
         handlersRejectedDataListDetailBtnClick,
     };
 };
+
 export default useApprovedDataListClickModal;
