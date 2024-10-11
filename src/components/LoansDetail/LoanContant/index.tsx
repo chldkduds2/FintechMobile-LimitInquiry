@@ -1,6 +1,6 @@
-import { AiOutlineQuestionCircle } from 'react-icons/ai';
-import BankIcon from '@/assets/image/BankIcon.svg';
-import FeeIcon from '@/assets/image/FeeIcon.svg';
+import AiOutlineQuestionCircle from '@/assets/image/AiOutlineQuestionCircle';
+import BankIcon from '@/assets/image/BankIcon';
+import FeeIcon from '@/assets/image/FeeIcon';
 
 const LoanContent = ({ hasRedemptionFeeTag }: { hasRedemptionFeeTag: boolean }) => {
     return (
@@ -12,7 +12,7 @@ const LoanContent = ({ hasRedemptionFeeTag }: { hasRedemptionFeeTag: boolean }) 
                         <div>개좌개설이</div>
                         <div className="ml-1 text-indigo-50">필요없어요</div>
                         <button type="button">
-                            <AiOutlineQuestionCircle size={15} className="mt-[3.4px] ml-1" color="#B3B3B3" />
+                            <AiOutlineQuestionCircle />
                         </button>
                     </div>
                     <div className="mt-1 text-xs font-medium text-gray-50">

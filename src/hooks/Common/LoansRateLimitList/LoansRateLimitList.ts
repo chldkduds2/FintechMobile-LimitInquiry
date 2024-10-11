@@ -1,6 +1,7 @@
 import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
 import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
-import { LoansApply } from '@/types/ApprovedConditionsLoansDateTyep/approvedConditionsLoansDate.type';
+import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
+import { useNavigate } from 'react-router-dom';
 
 export const useLoansRateLimitList = () => {
     const { data: approvedConditionsLoanListDate = [], isLoading } = useLoansListDate(
@@ -33,6 +34,12 @@ export const useLoansRateLimitList = () => {
     // [ 최저금리 대출 금리 포멧 데이터 ]
     const minLoanRateFormatted = loanRateDateFormatted(minRateLoan);
 
+    const navigate = useNavigate();
+
+    const handleLoanClick = (loanId: string) => {
+        navigate(`/loansDetail/${loanId}`);
+    };
+
     return {
         approvedConditionsLoanListDate,
         isLoading,
@@ -42,5 +49,6 @@ export const useLoansRateLimitList = () => {
         maxLoanRateFormatted,
         minLoanLimitFormatted,
         minLoanRateFormatted,
+        handleLoanClick,
     };
 };

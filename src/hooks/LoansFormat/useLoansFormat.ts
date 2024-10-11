@@ -15,8 +15,12 @@ const useLoansFormat = () => {
         return amount + '%';
     };
 
-    const loanLimitDateFormatted = (loan: LoansApply) => {
-        return loan.condition?.loanLimit ? loanLimitformatAmount(loan.condition.loanLimit / 10000) : '정보 없음';
+    const loanLimitDateFormatted = (loan: LoansApply | number) => {
+        if (typeof loan === 'number') {
+            return loanLimitformatAmount(loan / 10000);
+        } else {
+            return loan.condition?.loanLimit ? loanLimitformatAmount(loan.condition.loanLimit / 10000) : '정보 없음';
+        }
     };
 
     const loanRateDateFormatted = (loan: LoansApply) => {

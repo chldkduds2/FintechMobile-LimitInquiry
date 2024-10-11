@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLoansRateLimitList } from '@/hooks/Common/LoansRateLimitList/LoansRateLimitList';
 
 const LoanRateLimitList = () => {
@@ -10,13 +9,17 @@ const LoanRateLimitList = () => {
         minLoanRateFormatted,
         maxLoanLimitFormatted,
         maxLoanRateFormatted,
+        handleLoanClick,
     } = useLoansRateLimitList();
 
     if (isLoading) return <div>Loading...</div>;
 
     return (
         <div className="flex mb-5">
-            <div className="pt-4 pb-4 pl-4 w-full cursor-pointer rounded-[8px] border border-gray-99 shadow-[0px_0px_12px_rgba(155,163,228,0.2)] hover:active:bg-uniqueGray-99 mr-3">
+            <div
+                onClick={() => handleLoanClick(minRateLoan.id)}
+                className="pt-4 pb-4 pl-4 w-full cursor-pointer rounded-[8px] border border-gray-99 shadow-[0px_0px_12px_rgba(155,163,228,0.2)] hover:active:bg-uniqueGray-99 mr-3"
+            >
                 <h2 className="mb-1 text-xs font-medium text-gray-40">최저 금리</h2>
                 {minRateLoan && minRateLoan.condition ? (
                     <div>
@@ -33,7 +36,10 @@ const LoanRateLimitList = () => {
                     <p className="text-lg font-bold leading-[19.8px] text-gray-50">상품이 없습니다.</p>
                 )}
             </div>
-            <div className="pt-4 pb-4 pl-4 w-full cursor-pointer rounded-[8px] border border-gray-99 shadow-[0px_0px_12px_rgba(155,163,228,0.2)] hover:active:bg-uniqueGray-99">
+            <div
+                onClick={() => handleLoanClick(maxLoan.id)}
+                className="pt-4 pb-4 pl-4 w-full cursor-pointer rounded-[8px] border border-gray-99 shadow-[0px_0px_12px_rgba(155,163,228,0.2)] hover:active:bg-uniqueGray-99"
+            >
                 <h2 className="mb-1 text-xs font-medium text-gray-40">최대한도</h2>
                 {maxLoan && maxLoan.condition ? (
                     <div>

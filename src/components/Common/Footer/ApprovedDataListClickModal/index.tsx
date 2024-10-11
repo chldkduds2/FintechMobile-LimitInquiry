@@ -85,17 +85,16 @@ const ApprovedDataListClickModal = () => {
                                     )}
                                 </React.Fragment>
                             ))}
+                            <div className="mx-auto mt-10 mb-10 flex h-[44px] w-[138px] cursor-pointer flex-col justify-center rounded-full border border-blue-99 text-center text-sm text-gray-50 hover:bg-[#9fa0ad]/10 focus:bg-[#9fa0ad]/10">
+                                <div
+                                    onClick={handlerFailedDataListDetailBtnClick}
+                                    className="flex justify-center gap-1 mx-auto align-middle"
+                                >
+                                    더보기
+                                </div>
+                            </div>
                         </React.Fragment>
                     )}
-
-                    <div className="mx-auto mt-10 mb-10 flex h-[44px] w-[138px] cursor-pointer flex-col justify-center rounded-full border border-blue-99 text-center text-sm text-gray-50 hover:bg-[#9fa0ad]/10 focus:bg-[#9fa0ad]/10">
-                        <div
-                            onClick={handlerFailedDataListDetailBtnClick}
-                            className="flex justify-center gap-1 mx-auto align-middle"
-                        >
-                            더보기
-                        </div>
-                    </div>
                 </div>
 
                 <div className="h-[8px] w-full bg-gray-99" />
@@ -151,17 +150,16 @@ const ApprovedDataListClickModal = () => {
                                     )}
                                 </React.Fragment>
                             ))}
+                            <div className="mx-auto mt-10 mb-10 flex h-[44px] w-[138px] cursor-pointer flex-col justify-center rounded-full border border-blue-99 text-center text-sm text-gray-50 hover:bg-[#9fa0ad]/10 focus:bg-[#9fa0ad]/10">
+                                <div
+                                    onClick={handlersRejectedDataListDetailBtnClick}
+                                    className="flex justify-center gap-1 mx-auto align-middle"
+                                >
+                                    더보기
+                                </div>
+                            </div>
                         </React.Fragment>
                     )}
-
-                    <div className="mx-auto mt-10 mb-10 flex h-[44px] w-[138px] cursor-pointer flex-col justify-center rounded-full border border-blue-99 text-center text-sm text-gray-50 hover:bg-[#9fa0ad]/10 focus:bg-[#9fa0ad]/10">
-                        <div
-                            onClick={handlersRejectedDataListDetailBtnClick}
-                            className="flex justify-center gap-1 mx-auto align-middle"
-                        >
-                            더보기
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>,

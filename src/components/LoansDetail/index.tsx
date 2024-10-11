@@ -5,7 +5,8 @@ import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoa
 import FintechMobalieContentLayout from '@/components/Common/FintechMobalieLayout/FintechMobalieContentLayout/index';
 import LoanTitle from './LoanTitle/index';
 import LoanContent from './LoanContant/index';
-import LoanCalculator from './LoanCalculator';
+import LoanCalculator from './LoanCalculator/index';
+import LoanInfo from './LoanInfo/index';
 
 const LoansDetail = () => {
     const { loanId } = useParams<{ loanId: string }>();
@@ -26,18 +27,21 @@ const LoansDetail = () => {
     const hasRedemptionFeeTag = loanDetails.product.tags.some((tag: any) => tag.text === '중도상환수수료');
 
     return (
-        <div className="w-[100vw]">
+        <div className="w-[100vw] max-w-[427px]">
             <FintechMobalieContentLayout>
                 <LoanTitle loanDetails={loanDetails} />
             </FintechMobalieContentLayout>
+
             <div className="h-[8px] w-full bg-gray-99"></div>
             <FintechMobalieContentLayout>
                 <LoanContent hasRedemptionFeeTag={hasRedemptionFeeTag} />
             </FintechMobalieContentLayout>
             <div className="h-[8px] w-full bg-gray-99"></div>
 
-            <LoanCalculator />
+            <LoanCalculator loanLimit={loanDetails.condition.loanLimit} loanRate={loanDetails.condition.loanRate} />
             <div className="h-[8px] w-full bg-gray-99"></div>
+
+            <LoanInfo />
         </div>
     );
 };
