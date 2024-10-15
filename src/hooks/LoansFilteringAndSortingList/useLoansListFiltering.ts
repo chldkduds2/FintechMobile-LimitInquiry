@@ -6,7 +6,7 @@ import { LoansTypeFilterType } from '@/types/Common/LoanFilterBarType/LoansTypeF
 import useLoansTypeFilterBarState from '@/services/LoansFilterBarStateRepository/LoansTypeFilterModalStateRepository/queries';
 
 const useLoansFilteringAndSortingList = () => {
-    const { data: approvedConditionsLoanListDate, isLoading, error } = useLoansListDate('condition_approved');
+    const { data: approvedConditionsLoanListDate, error } = useLoansListDate('condition_approved');
     const { loansFiterBarState } = useLoanFilterBarState();
     const { isRateSortState } = useLoansListSortState();
     const { loansTypeFilterModalState } = useLoansTypeFilterBarState();
@@ -46,7 +46,7 @@ const useLoansFilteringAndSortingList = () => {
         });
     }
 
-    return { approvedConditionsLoansFilteringList, isLoading, error };
+    return { approvedConditionsLoansFilteringList, error };
 };
 
 export default useLoansFilteringAndSortingList;

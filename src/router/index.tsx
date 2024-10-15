@@ -6,24 +6,26 @@ const LoansDetailPage = lazy(() => import('@/pages/LoansDetailPage/index'));
 
 const Router = () => {
     return (
-        <Routes>
-            <Route
-                path="/"
-                element={
-                    <Suspense fallback={<>Loading...</>}>
-                        <HomePage />
-                    </Suspense>
-                }
-            />
-            <Route
-                path="loansDetail/:loanId"
-                element={
-                    <Suspense fallback={<>Loading...</>}>
-                        <LoansDetailPage />
-                    </Suspense>
-                }
-            />
-        </Routes>
+        <>
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <Suspense fallback={<>Loading...</>}>
+                            <HomePage />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="loansDetail/:loanId"
+                    element={
+                        <Suspense fallback={<>Loading...</>}>
+                            <LoansDetailPage />
+                        </Suspense>
+                    }
+                />
+            </Routes>
+        </>
     );
 };
 

@@ -2,8 +2,9 @@ import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/q
 import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
 import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
 import { useNavigate } from 'react-router-dom';
+import { useTransition } from 'react';
 
-export const useLoansRateLimitList = () => {
+const useLoansRateLimitList = () => {
     const { data: approvedConditionsLoanListDate = [], isLoading } = useLoansListDate(
         'condition_approved'
     ) as unknown as {
@@ -36,11 +37,16 @@ export const useLoansRateLimitList = () => {
 
     const navigate = useNavigate();
 
+    const [isPending, startTransition] = useTransition();
+
     const handleLoanClick = (loanId: string) => {
-        navigate(`/loansDetail/${loanId}`);
+        startTransition(() => {
+            navigate(`/loansDetail/${loanId}`);
+        });
     };
 
     return {
+        isPending,
         approvedConditionsLoanListDate,
         isLoading,
         maxLoan,
@@ -52,3 +58,4 @@ export const useLoansRateLimitList = () => {
         handleLoanClick,
     };
 };
+export default useLoansRateLimitList;

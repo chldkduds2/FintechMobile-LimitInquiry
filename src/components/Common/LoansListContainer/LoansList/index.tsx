@@ -3,15 +3,15 @@ import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedCond
 import useLoansFilteringAndSortingList from '@/hooks/LoansFilteringAndSortingList/useLoansListFiltering';
 import { LoansListTagsColor } from '@/utils/LoansListTagsColor';
 import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
-import useLoansLis from '@/hooks/Common/LoansListContainer/LoansList/useLoansList';
+import useLoansList from '@/hooks/Common/LoansListContainer/LoansList/useLoansList';
 import { TbExclamationCircle } from 'react-icons/tb';
 import { HiOutlineRefresh } from 'react-icons/hi';
 import { IoIosArrowForward } from 'react-icons/io';
 
-const LoansList = () => {
+const LoansList = ({}) => {
     const { approvedConditionsLoansFilteringList = [] } = useLoansFilteringAndSortingList();
     const { loanLimitDateFormatted, loanRateDateFormatted } = useLoansFormat();
-    const { handleLoanClick, handleRefreshClick } = useLoansLis();
+    const { handleLoanClick, handleRefreshClick } = useLoansList();
 
     return (
         <div className="mb-10 border-t border-[#c1c2ca]/30">

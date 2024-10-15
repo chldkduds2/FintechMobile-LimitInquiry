@@ -1,8 +1,7 @@
-import { useLoansRateLimitList } from '@/hooks/Common/LoansRateLimitList/LoansRateLimitList';
+import useLoansRateLimitList from '@/hooks/Common/LoansRateLimitList/LoansRateLimitList';
 
 const LoanRateLimitList = () => {
     const {
-        isLoading,
         maxLoan,
         minRateLoan,
         minLoanLimitFormatted,
@@ -11,8 +10,6 @@ const LoanRateLimitList = () => {
         maxLoanRateFormatted,
         handleLoanClick,
     } = useLoansRateLimitList();
-
-    if (isLoading) return <div>Loading...</div>;
 
     return (
         <div className="flex mb-5">

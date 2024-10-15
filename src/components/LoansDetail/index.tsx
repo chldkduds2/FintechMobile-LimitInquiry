@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
 import FintechMobalieContentLayout from '@/components/Common/FintechMobalieLayout/FintechMobalieContentLayout/index';
@@ -7,20 +6,24 @@ import LoanTitle from './LoanTitle/index';
 import LoanContent from './LoanContant/index';
 import LoanCalculator from './LoanCalculator/index';
 import LoanInfo from './LoanInfo/index';
+import useLoansRateLimitList from '@/hooks/Common/LoansRateLimitList/LoansRateLimitList';
+import useLoansList from '@/hooks/Common/LoansListContainer/LoansList/useLoansList';
 
 const LoansDetail = () => {
     const { loanId } = useParams<{ loanId: string }>();
     const { data: approvedConditionsLoanListDate = [] } = useApprovedConditionsLoansListDate('condition_approved');
     const [loanDetails, setLoanDetails] = useState<any>(null);
+    const { isPending: isLoansRateLimitListPending } = useLoansRateLimitList();
+    const { isPending: isoansListPending } = useLoansList();
 
     useEffect(() => {
         if (loanId) {
             const loan = approvedConditionsLoanListDate.find((loanApply) => loanApply.id.toString() === loanId);
             setLoanDetails(loan);
         }
-    }, [loanId]);
+    }, [loanId, approvedConditionsLoanListDate]);
 
-    if (!loanDetails) {
+    if (isLoansRateLimitListPending || !loanDetails || isoansListPending) {
         return <div>Loading...</div>;
     }
 

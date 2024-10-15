@@ -12,7 +12,6 @@ const LoanCalculator: React.FC<LoanCalculatorPropsType> = ({ loanLimit, loanRate
         annualInterestRate: loanRate,
         loanPeriodMonths: 84,
     });
-    console.log(firstMonthTotalPayment);
 
     return (
         <div className="mx-5 my-[30px] text-black">
