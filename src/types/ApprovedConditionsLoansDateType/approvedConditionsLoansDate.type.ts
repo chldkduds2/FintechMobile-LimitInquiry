@@ -1,5 +1,5 @@
 export interface LoansBank {
-    id: string;
+    id: number;
     name: string;
     bankLogoUrl: string;
     backgroundBankLogo: string;
@@ -10,7 +10,7 @@ export interface LoansBank {
 }
 
 export interface LoansCondition {
-    id: string;
+    id: number;
     bankManagementNo: string;
     loanLimit?: number; // 한도
     loanRate?: number; // 금리
@@ -19,7 +19,7 @@ export interface LoansCondition {
 }
 
 export interface LoansProduct {
-    id: string;
+    id: number;
     bank: LoansBank;
     name: string;
     productCode: string;
@@ -33,7 +33,7 @@ export interface LoansProduct {
 }
 
 export interface LoansApply {
-    id: string;
+    id: number;
     insertTime: number;
     product: LoansProduct;
     condition: LoansCondition;

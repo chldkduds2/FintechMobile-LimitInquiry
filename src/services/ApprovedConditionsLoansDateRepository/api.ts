@@ -1,4 +1,4 @@
-import { LoansApply } from '@/types/ApprovedConditionsLoansDateTyep/approvedConditionsLoansDate.type';
+import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
 import { LimitInquiryResponse_ExampleDummyData } from '@/assets/Data/ApprovedConditionsLoansDate/index';
 
 const ApprovedConditionsLoansDateApi = {

@@ -8,7 +8,7 @@ const LoanTitle = ({ loanDetails }: { loanDetails: LoansApply }) => {
 
     return (
         <div className="mb-10 text-black">
-            <div className="mt-[34px]">
+            <div className="mt-1">
                 <img
                     className="h-[52px] w-[52px]"
                     src={loanDetails.product.bank.bankLogoUrl}

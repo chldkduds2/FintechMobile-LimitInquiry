@@ -10,8 +10,8 @@ const BankIcon = () => {
             </g>
             <rect x="4.5" y="20" width="22" height="4" rx="1" fill="#6CB5F5"></rect>
             <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M26.5 30.5C29.5376 30.5 32 28.0376 32 25C32 21.9624 29.5376 19.5 26.5 19.5C23.4624 19.5 21 21.9624 21 25C21 28.0376 23.4624 30.5 26.5 30.5Z"
                 fill="#00C108"
             ></path>
@@ -21,8 +21,8 @@ const BankIcon = () => {
                 x2="24.8916"
                 y2="26.8337"
                 stroke="white"
-                stroke-width="1.01137"
-                stroke-linecap="round"
+                strokeWidth="1.01137"
+                strokeLinecap="round"
             ></line>
             <line
                 x1="28.1084"
@@ -30,8 +30,8 @@ const BankIcon = () => {
                 x2="24.7372"
                 y2="23.4414"
                 stroke="white"
-                stroke-width="1.01137"
-                stroke-linecap="round"
+                strokeWidth="1.01137"
+                strokeLinecap="round"
             ></line>
         </svg>
     );

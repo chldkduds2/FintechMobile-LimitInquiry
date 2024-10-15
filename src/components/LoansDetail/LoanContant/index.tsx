@@ -1,6 +1,6 @@
-import AiOutlineQuestionCircle from '@/assets/image/AiOutlineQuestionCircle';
-import BankIcon from '@/assets/image/BankIcon';
-import FeeIcon from '@/assets/image/FeeIcon';
+import AiOutlineQuestionCircleIco from '@/assets/image/aiOutlineQuestionCircleIcon';
+import BankIcon from '@/assets/image/bankIcon';
+import FeeIcon from '@/assets/image/feeIcon';
 
 const LoanContent = ({ hasRedemptionFeeTag }: { hasRedemptionFeeTag: boolean }) => {
     return (
@@ -12,7 +12,7 @@ const LoanContent = ({ hasRedemptionFeeTag }: { hasRedemptionFeeTag: boolean }) 
                         <div>개좌개설이</div>
                         <div className="ml-1 text-indigo-50">필요없어요</div>
                         <button type="button">
-                            <AiOutlineQuestionCircle />
+                            <AiOutlineQuestionCircleIco />
                         </button>
                     </div>
                     <div className="mt-1 text-xs font-medium text-gray-50">
