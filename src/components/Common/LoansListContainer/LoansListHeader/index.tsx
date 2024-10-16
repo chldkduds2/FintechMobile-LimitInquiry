@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { TbArrowsSort } from 'react-icons/tb';
 import useLoanListHeader from '@/hooks/Common/LoansListContainer/LoansListHeader/useLoansListHeader';
 import useLoansListCountState from '@/services/ApprovedConditionsLoansListCountStateRepository/queries';
+import useLoansFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
 
 const LoansListHeader = () => {
     const { loansListCountState } = useLoansListCountState();
@@ -10,7 +12,7 @@ const LoansListHeader = () => {
         <div className="flex mb-[30px] mt-7">
             <div className="flex text-sm font-bold">
                 대출가능
-                <span className={`ml-1 ${loansListCountState != 0 ? 'text-indigo-60' : 'text-[#9FA0AD]'}`}>
+                <span className={`ml-1 ${loansListCountState !== 0 ? 'text-indigo-60' : 'text-[#9FA0AD]'}`}>
                     {loansListCountState}건
                 </span>
             </div>
@@ -21,5 +23,4 @@ const LoansListHeader = () => {
         </div>
     );
 };
-
 export default LoansListHeader;

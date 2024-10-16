@@ -25,7 +25,7 @@ const LoanInfoAccordionItem = ({
                     <div className="mb-[-15px] bg-gray-99 px-6  py-[18px] w-full mx-auto">
                         {content.split('<br/>').map((line, index) => (
                             <span
-                                className="whitespace-pre-wrap text-[13px] tracking-[-0.01em] text-gray-50"
+                                className="whitespace-pre-wrap text-[13px] tracking-[-0.01em] text-gray-50 pb-44"
                                 key={index}
                             >
                                 {line}

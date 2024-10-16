@@ -23,7 +23,7 @@ const LoansFilterBar = () => {
             {isLoansTypeModalOpenState && <div className="fixed inset-0 z-40 bg-black bg-opacity-50"></div>}
 
             <div className="relative flex flex-col">
-                <div className="w-[91.3%]">
+                <div className="w-full">
                     <ul
                         className={`inline-flex flex-wrap gap-x-1 gap-y-2 transition-all duration-500 ease-in-out ${
                             isExpanded ? 'h-auto opacity-100' : 'h-[29px] opacity-100 overflow-hidden'

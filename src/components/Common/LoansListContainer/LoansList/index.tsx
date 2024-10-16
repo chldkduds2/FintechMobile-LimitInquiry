@@ -21,7 +21,7 @@ const LoansList = ({}) => {
                         <div
                             className="hover:active:bg-uniqueGray-99 flex-col w-full items-center  border-b border-[#c1c2ca]/30 pt-[18px] pb-[18px] cursor-pointer"
                             key={index}
-                            onClick={() => handleLoanClick(loan.id)}
+                            onClick={() => handleLoanClick(String(loan.id))}
                         >
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center">

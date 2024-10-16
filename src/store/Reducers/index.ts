@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import loanFilterReducer from './Common/LoanFilterBarReducer';
+import PositionReducer from '@/store/Reducers/Common/PositionReducer';
+import loansTypeFilterReducer from '@/store/Reducers/LoansTypeFilterModalStateReducer';
 
 const rootReducer = combineReducers({
-    loanFilter: loanFilterReducer,
-    // 다른 리듀서가 있으면 여기에 추가
+    position: PositionReducer,
+    loansTypeFilter: loansTypeFilterReducer,
 });
 
 export default rootReducer;
