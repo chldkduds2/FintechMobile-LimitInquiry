@@ -2,9 +2,10 @@ import { PropsWithChildren } from 'react';
 import Header from '@/components/Common/Header/index';
 import useFintechMobalie from '@/hooks/Common/FintechMobalieLayout/useFintechMobalieLayout';
 import PageScrollfixedContentContainer from '@/components/Common/PageScrollFixedContentContainer/index';
-
+import useApprovedDataListClickContainer from '@/hooks/Common/Footer/ApprovedDataListClickContainer/ApprovedDataListClickModal/useApprovedDataListClickModal';
 const FintechMobalieLayout = ({ children }: PropsWithChildren) => {
     const { scrollRef, position, isModalOpen, pathname, scrollToTop } = useFintechMobalie();
+    const { notApprovedLoansDataModalOpenState } = useApprovedDataListClickContainer();
 
     return (
         <div>
@@ -17,7 +18,7 @@ const FintechMobalieLayout = ({ children }: PropsWithChildren) => {
                     {children}
                 </div>
             </div>
-            <div className={`${position > 100 ? '' : 'hidden'}`}>
+            <div className={`${position > 100 && !notApprovedLoansDataModalOpenState ? '' : 'hidden'}`}>
                 <PageScrollfixedContentContainer pathname={pathname === '/'} scrollToTop={scrollToTop} />
             </div>
         </div>

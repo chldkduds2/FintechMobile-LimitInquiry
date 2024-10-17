@@ -23,7 +23,7 @@ const LoanInfo = () => {
     return (
         <div className="w-full">
             <div className="flex items-center justify-between px-5 h-15">
-                <h1 className="text-base font-bold text-black">대출상품 안내</h1>
+                <h1 className="text-base font-bold text-black">대출 상품 안내</h1>
 
                 <button className="flex items-center justify-center h-11 flex-nowrap" onClick={toggleAll}>
                     <span className="text-xs font-bold text-indigo-40">{isAnyOpen ? '전체닫기' : '전체열기'}</span>

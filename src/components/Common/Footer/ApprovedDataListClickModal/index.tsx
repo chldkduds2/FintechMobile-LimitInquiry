@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { IoClose } from 'react-icons/io5';
 import useApprovedDataListClickModal from '@/hooks/Common/Footer/ApprovedDataListClickContainer/ApprovedDataListClickModal/useApprovedDataListClickModal';
 import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import Icon from '@/assets/image/Icon';
 
 const ApprovedDataListClickModal = () => {
     const {
@@ -19,10 +20,10 @@ const ApprovedDataListClickModal = () => {
 
     return ReactDOM.createPortal(
         <div
-            className={`fixed top-0 bottom-0 left-0 z-50 flex items-center justify-center w-full transition-opacity duration-300 ${notApprovedLoansDataModalOpenState ? 'opacity-100' : 'opacity-0'}`}
+            className={`fixed top-0 bottom-0 h-full left-0 z-50 flex items-center justify-center w-full transition-opacity duration-300 ${notApprovedLoansDataModalOpenState ? 'opacity-100' : 'opacity-0'}`}
         >
             <div
-                className={`w-[27rem] max-h-[40rem] p-7 bg-white shadow-lg overflow-y-auto no-scrollbar transform transition-transform duration-300 ${notApprovedLoansDataModalOpenState ? 'scale-100' : 'scale-95'}`}
+                className={`w-[27rem] overflow-hidden h-[100%]  pr-7 pl-7 pt-7 bg-white shadow-lg overflow-y-auto no-scrollbar transform transition-transform duration-300 ${notApprovedLoansDataModalOpenState ? 'scale-100' : 'scale-95'}`}
             >
                 <div className="relative flex justify-center w-full">
                     <IoClose
@@ -97,7 +98,7 @@ const ApprovedDataListClickModal = () => {
                     )}
                 </div>
 
-                <div className="h-[8px] w-full bg-gray-99" />
+                <div className="h-[8px] ml-[-10vw] w-[200vw] bg-gray-99 mt-7" />
                 <div>
                     <div className="flex text-sm font-bold mt-7">
                         <span className="mr-1">대출 거절</span>
@@ -160,6 +161,15 @@ const ApprovedDataListClickModal = () => {
                             </div>
                         </React.Fragment>
                     )}
+                </div>
+                <div className="mt-7 ml-[-7.7%] w-[117%] bg-uniqueGray-95 text-center bottom-0 flex h-[10.4rem] items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-4 text-center ">
+                        <div className="flex">
+                            <Icon />
+                            <div className="text-xs font-medium text-gray-70">이 대출에 대해 문의사항이 있나요?</div>
+                        </div>
+                        <div className="text-xs underline cursor-pointer text-gray-70">핀다 1:1 채팅 문의하기</div>
+                    </div>
                 </div>
             </div>
         </div>,

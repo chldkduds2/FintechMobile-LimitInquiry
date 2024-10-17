@@ -1,24 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { initialLoansTypeFilterModalState } from '@/types/Common/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
+import { LoansTypeFilterModalStateType } from '@/types/Common/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
+
+const initialState: LoansTypeFilterModalStateType = {
+    loansTypeFilterModalState: [],
+};
 
 const loansTypeFilterSlice = createSlice({
     name: 'loansTypeFilter',
-    initialState: initialLoansTypeFilterModalState,
+    initialState,
     reducers: {
-        addLoansTypeFilter(state, action: PayloadAction<string>) {
+        addLoansTypeFilter: (state, action: PayloadAction<string>) => {
             state.loansTypeFilterModalState.push(action.payload);
         },
-        removeLoansTypeFilter(state, action: PayloadAction<string>) {
+        removeLoansTypeFilter: (state, action: PayloadAction<string>) => {
             state.loansTypeFilterModalState = state.loansTypeFilterModalState.filter(
                 (loanType) => loanType !== action.payload
             );
         },
-        resetLoansTypeFilter(state) {
+        resetLoansTypeFilter: (state) => {
             state.loansTypeFilterModalState = [];
         },
     },
 });
 
 export const { addLoansTypeFilter, removeLoansTypeFilter, resetLoansTypeFilter } = loansTypeFilterSlice.actions;
-
 export default loansTypeFilterSlice.reducer;
