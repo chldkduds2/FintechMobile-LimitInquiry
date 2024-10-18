@@ -1,15 +1,18 @@
+import { useSelector } from 'react-redux';
 import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
 import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
-import useLoanFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
-import useLoansListSortState from '@/services/LoansListSortStateRepository/queries';
+import {
+    selectLoansFilterBarState,
+    selectLoansTypeFilterBarState,
+    selectLoansListSortState,
+} from '@/store/Selectors/index';
 import { LoansTypeFilterType } from '@/types/Common/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
-import useLoansTypeFilterBarState from '@/services/LoansFilterBarStateRepository/LoansTypeFilterModalStateRepository/queries';
 
 const useLoansFilteringAndSortingList = () => {
     const { data: approvedConditionsLoanListDate, error } = useLoansListDate('condition_approved');
-    const { loansFiterBarState } = useLoanFilterBarState();
-    const { isRateSortState } = useLoansListSortState();
-    const { loansTypeFilterModalState } = useLoansTypeFilterBarState();
+    const loansFiterBarState = useSelector(selectLoansFilterBarState) as string[];
+    const loansTypeFilterModalState = useSelector(selectLoansTypeFilterBarState) as unknown as string[];
+    const isRateSortState = useSelector(selectLoansListSortState);
 
     let approvedConditionsLoansFilteringList = approvedConditionsLoanListDate;
 
@@ -31,7 +34,7 @@ const useLoansFilteringAndSortingList = () => {
     // 대출종류데이터 세부 필터링
     if (loansTypeFilterModalState.length > 0) {
         approvedConditionsLoansFilteringList = approvedConditionsLoansFilteringList?.filter((loan: LoansApply) => {
-            return loansTypeFilterModalState.some((type) => loan.product.name.includes(type));
+            return loansTypeFilterModalState.some((type: string) => loan.product.name.includes(type));
         });
     }
 

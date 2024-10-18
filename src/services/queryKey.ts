@@ -10,7 +10,7 @@ export const QUERY_KEYS = {
         isRateSortState: 'isRateSortState',
     },
     filterValue: {
-        loansFiterBarState: 'loansFiterBarState',
+        loansFilterBarState: 'loansFilterBarState',
         loansTypeFilterModalState: 'loansTypeFilterModalState',
         modalOpenState: 'modalOpenState',
     },

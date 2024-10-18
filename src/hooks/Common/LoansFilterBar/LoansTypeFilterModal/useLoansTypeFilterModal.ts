@@ -1,30 +1,36 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
 import { LoansTypeFilterType } from '@/types/Common/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
-import useLoansFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
-import useLoansTypeFilterBarState from '@/services/LoansFilterBarStateRepository/LoansTypeFilterModalStateRepository/queries';
+import { removeFilter } from '@/store/Slice/LoansFilterBarStateSlice/reducer';
+import { selectLoansTypeFilterBarState } from '@/store/Selectors/index';
+import {
+    addLoansTypeFilter,
+    removeLoansTypeFilter,
+    resetLoansTypeFilter,
+} from '@/store/Slice/LoansFilterBarStateSlice/LoansTypeFilterBarModalStateSlice/reducer';
 import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
 import useModalOpenState from '@/services/ModalOpenStateRepository/queries';
 
 export const useLoansTypeFilterModal = () => {
+    const dispatch = useDispatch();
     const modalPortal = document.getElementById('modal-portal')!;
     const typeFilters: LoansTypeFilterType[] = ['신용대출', '주택담보대출', '자동차담보대출', '대환대출'];
     const { data: approvedConditionsLoanListDate = [] } = useLoansListDate('condition_approved');
-    const { removeFilter } = useLoansFilterBarState();
-    const { loansTypeFilterModalState, addLoansTypeFilter, removeLoansTypeFilter, resetLoansTypeFilter } =
-        useLoansTypeFilterBarState();
+
+    const loansTypeFilterModalState = useSelector(selectLoansTypeFilterBarState) as unknown as string[];
     const { isLoansTypeModalOpenState, setIsLoansTypeModalOpenState } = useModalOpenState();
 
     const toggleModal = () => {
         setIsLoansTypeModalOpenState(!isLoansTypeModalOpenState);
-        removeFilter('대출종류');
+        dispatch(removeFilter('대출종류'));
     };
 
     const handleCheckboxClick = (loansTypeFilter: string) => {
         const existingFilter = loansTypeFilterModalState.find((filter: string) => filter === loansTypeFilter);
         if (existingFilter) {
-            removeLoansTypeFilter(loansTypeFilter);
+            dispatch(removeLoansTypeFilter(loansTypeFilter));
         } else {
-            addLoansTypeFilter(loansTypeFilter);
+            dispatch(addLoansTypeFilter(loansTypeFilter));
         }
     };
 
@@ -49,7 +55,7 @@ export const useLoansTypeFilterModal = () => {
     }
 
     const handleRefreshClick = () => {
-        resetLoansTypeFilter();
+        dispatch(resetLoansTypeFilter());
     };
 
     const handleResultBtnClick = () => {

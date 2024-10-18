@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { LoansFilterType } from '@/types/Common/LoanFilterBarType/loanFilterBar.type';
-import useLoansFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
-import useLoansTypeFilterBarState from '@/services/LoansFilterBarStateRepository/LoansTypeFilterModalStateRepository/queries';
+import { addFilter, removeFilter, resetFilter } from '@/store/Slice/LoansFilterBarStateSlice/reducer';
+import { selectLoansFilterBarState } from '@/store/Selectors/index';
+import { resetLoansTypeFilter } from '@/store/Slice/LoansFilterBarStateSlice/LoansTypeFilterBarModalStateSlice/reducer';
 
 export const useLoansFilterBar = () => {
-    const filters: LoansFilterType[] = ['오늘입금', '계좌개설 없음', '중도상환수수료 없음', '1금융', '대출종류'];
+    const dispatch = useDispatch();
+    const loansFilterBarState = useSelector(selectLoansFilterBarState) as string[];
 
-    const { loansFiterBarState, addFilter, removeFilter, resetFilter } = useLoansFilterBarState();
-    const { resetLoansTypeFilter } = useLoansTypeFilterBarState();
+    const filters: LoansFilterType[] = ['오늘입금', '계좌개설 없음', '중도상환수수료 없음', '1금융', '대출종류'];
 
     const [isExpanded, setIsExpanded] = useState<boolean>(true);
     const [showRefresh, setShowRefresh] = useState<boolean>(false);
@@ -17,14 +19,14 @@ export const useLoansFilterBar = () => {
     };
 
     const handleFilterClick = (filter: string) => {
-        if (loansFiterBarState.includes(filter)) {
-            removeFilter(filter); // 필터 제거
+        if (loansFilterBarState.includes(filter)) {
+            dispatch(removeFilter(filter));
         } else {
-            addFilter(filter); // 필터 추가
+            dispatch(addFilter(filter));
         }
 
         // [ 새로고침 버튼 표시 여부 결정 ]
-        if (loansFiterBarState.length === 1 && loansFiterBarState.includes(filter)) {
+        if (loansFilterBarState.length === 1 && loansFilterBarState.includes(filter)) {
             setShowRefresh(false); // 마지막 필터가 제거되면 새로고침 버튼 숨기기
             toggleExpand(false); // 필터가 없으면 아코디언 접기
         } else {
@@ -34,16 +36,16 @@ export const useLoansFilterBar = () => {
     };
 
     const handleRefreshClick = () => {
-        resetFilter(); // 필터 초기화 액션 디스패치
-        setShowRefresh(false); // 새로고침 버튼 숨기기
-        toggleExpand(false); // 필터 초기화 시 아코디언 접기
-        resetLoansTypeFilter(); // 대출종류 필터 초기화
+        dispatch(resetFilter());
+        setShowRefresh(false);
+        toggleExpand(false);
+        dispatch(resetLoansTypeFilter());
     };
 
     return {
         filters,
         isExpanded,
-        loansFiterBarState,
+        loansFilterBarState,
         showRefresh,
         toggleExpand,
         handleFilterClick,

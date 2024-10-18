@@ -9,7 +9,7 @@ const LoansFilterBar = () => {
     const {
         filters,
         isExpanded,
-        loansFiterBarState,
+        loansFilterBarState,
         showRefresh,
         toggleExpand,
         handleFilterClick,
@@ -44,7 +44,7 @@ const LoansFilterBar = () => {
                                     handleFilterClick(filter);
                                 }}
                                 className={`h-[29px] flex cursor-pointer rounded-[26px] px-3 text-center border  active:border active:border-gray-80 ${
-                                    loansFiterBarState.includes(filter)
+                                    loansFilterBarState.includes(filter)
                                         ? 'bg-indigo-50 text-white'
                                         : 'bg-white text-black border-solid border-gray-90'
                                 }`}
@@ -59,13 +59,13 @@ const LoansFilterBar = () => {
                                             <FaChevronDown
                                                 size={10}
                                                 className="mt-2"
-                                                color={loansFiterBarState.includes(filter) ? 'white' : 'gray'}
+                                                color={loansFilterBarState.includes(filter) ? 'white' : 'gray'}
                                             />
                                         ) : (
                                             <FaChevronUp
                                                 size={10}
                                                 className="mt-2"
-                                                color={loansFiterBarState.includes(filter) ? 'white' : 'gray'}
+                                                color={loansFilterBarState.includes(filter) ? 'white' : 'gray'}
                                             />
                                         )}
                                     </span>

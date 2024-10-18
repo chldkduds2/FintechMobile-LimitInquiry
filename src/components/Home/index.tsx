@@ -6,10 +6,10 @@ import FintechMobalieContentLayout from '@/components/Common/FintechMobalieLayou
 import LoansListContainert from '../Common/LoansListContainer/index';
 import Footer from '@/components/Common/Footer/index';
 import { useSelector } from 'react-redux';
-import { selectPosition } from '@/store/Selectors/Common/PositionSelectors';
+import { selectPositionState } from '@/store/Selectors/index';
 
 const Home = () => {
-    const position = useSelector(selectPosition);
+    const position = useSelector(selectPositionState);
     return (
         <React.Fragment>
             <FintechMobalieContentLayout>

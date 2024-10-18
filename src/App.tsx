@@ -26,7 +26,7 @@ const App = () => {
                     <FintechMobalieLayout>
                         <Router />
                     </FintechMobalieLayout>
-                    {/* <ReactQueryDevtools  /> */}
+                    <ReactQueryDevtools />
                 </Provider>
             </BrowserRouter>
         </QueryClientProvider>

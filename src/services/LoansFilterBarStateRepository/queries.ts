@@ -9,11 +9,11 @@ const useLoansFilterBarState = () => {
     const queryClient = useQueryClient();
 
     // [ 필터값 상태 ]
-    const { data: loansFiterBarState = initialLoanFilterBarState } = useQuery<LoansFilterBarStateType>({
-        queryKey: [QUERY_KEYS.filterValue.loansFiterBarState],
+    const { data: loansFilterBarState = initialLoanFilterBarState } = useQuery<LoansFilterBarStateType>({
+        queryKey: [QUERY_KEYS.filterValue.loansFilterBarState],
         queryFn: () => {
             const state = queryClient.getQueryData<LoansFilterBarStateType>([
-                QUERY_KEYS.filterValue.loansFiterBarState,
+                QUERY_KEYS.filterValue.loansFilterBarState,
             ]);
             return state !== undefined ? state : initialLoanFilterBarState;
         },
@@ -22,10 +22,10 @@ const useLoansFilterBarState = () => {
     // [ 필터값 추가 함수 ]
     const addFilter = (newFilter: string) => {
         queryClient.setQueryData<LoansFilterBarStateType>(
-            [QUERY_KEYS.filterValue.loansFiterBarState],
+            [QUERY_KEYS.filterValue.loansFilterBarState],
             (oldState = initialLoanFilterBarState) => ({
                 ...oldState,
-                loansFiterBarState: [...new Set([...oldState.loansFiterBarState, newFilter])],
+                loansFiterBarState: [...new Set([...oldState.loansFilterBarState, newFilter])],
             })
         );
     };
@@ -33,23 +33,23 @@ const useLoansFilterBarState = () => {
     // [ 필터값 삭제 함수 ]
     const removeFilter = (removeFilter: string) => {
         queryClient.setQueryData<LoansFilterBarStateType>(
-            [QUERY_KEYS.filterValue.loansFiterBarState],
+            [QUERY_KEYS.filterValue.loansFilterBarState],
             (oldState = initialLoanFilterBarState) => ({
                 ...oldState,
-                loansFiterBarState: oldState.loansFiterBarState.filter((f) => f !== removeFilter),
+                loansFiterBarState: oldState.loansFilterBarState.filter((f) => f !== removeFilter),
             })
         );
     };
 
     // [ 필터값 초기화 함수 ]
     const resetFilter = () => {
-        queryClient.setQueryData<LoansFilterBarStateType>([QUERY_KEYS.filterValue.loansFiterBarState], {
-            loansFiterBarState: [],
+        queryClient.setQueryData<LoansFilterBarStateType>([QUERY_KEYS.filterValue.loansFilterBarState], {
+            loansFilterBarState: [],
         });
     };
 
     return {
-        loansFiterBarState: loansFiterBarState.loansFiterBarState,
+        loansFilterBarState: loansFilterBarState.loansFilterBarState,
         addFilter,
         removeFilter,
         resetFilter,

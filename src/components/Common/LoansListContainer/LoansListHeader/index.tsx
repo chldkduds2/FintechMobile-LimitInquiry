@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
 import { TbArrowsSort } from 'react-icons/tb';
 import useLoanListHeader from '@/hooks/Common/LoansListContainer/LoansListHeader/useLoansListHeader';
 import useLoansListCountState from '@/services/ApprovedConditionsLoansListCountStateRepository/queries';
-import useLoansFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
 
 const LoansListHeader = () => {
     const { loansListCountState } = useLoansListCountState();

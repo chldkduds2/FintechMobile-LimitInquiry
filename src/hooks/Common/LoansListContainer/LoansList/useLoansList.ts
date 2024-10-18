@@ -1,12 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import useLoansFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
-import useLoansTypeFilterBarState from '@/services/LoansFilterBarStateRepository/LoansTypeFilterModalStateRepository/queries';
+import { resetLoansTypeFilter } from '@/store/Slice/LoansFilterBarStateSlice/LoansTypeFilterBarModalStateSlice/reducer';
 import { useTransition } from 'react';
 
 const useLoansList = () => {
     const navigate = useNavigate();
     const { resetFilter } = useLoansFilterBarState();
-    const { resetLoansTypeFilter } = useLoansTypeFilterBarState();
 
     const [isPending, startTransition] = useTransition();
 

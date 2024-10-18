@@ -2,18 +2,19 @@ import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { throttle } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import useLoansFilterBarState from '@/services/LoansFilterBarStateRepository/queries';
-import useModalOpenState from '@/services/ModalOpenStateRepository/queries';
-import { setPosition } from '@/store/Actions/Common/PositionActions';
-import { selectPosition } from '@/store/Selectors/Common/PositionSelectors';
+import { selectIsLoansTypeModalOpenState, selectNotApprovedLoansDataModalOpenState } from '@/store/Selectors/index';
+import { setPosition } from '@/store/Slice/PositionSlice/reducer';
+import { selectPositionState, selectLoansFilterBarState } from '@/store/Selectors/index';
 
 const useFintechMobalieLayout = () => {
     const dispatch = useDispatch();
-    const { loansFiterBarState } = useLoansFilterBarState();
-    const { isLoansTypeModalOpenState, notApprovedLoansDataModalOpenState } = useModalOpenState();
+    const isLoansTypeModalOpenState = useSelector(selectIsLoansTypeModalOpenState);
+    const notApprovedLoansDataModalOpenState = useSelector(selectNotApprovedLoansDataModalOpenState);
+
     const scrollRef = useRef<HTMLDivElement>(null);
     const { pathname } = useLocation();
-    const position = useSelector(selectPosition);
+    const position = useSelector(selectPositionState);
+    const loansFiterBarState = useSelector(selectLoansFilterBarState);
 
     const onScroll = throttle(() => {
         if (scrollRef.current) {
@@ -24,7 +25,7 @@ const useFintechMobalieLayout = () => {
     const scrollToTop = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-            dispatch(setPosition(0)); // 스크롤 위치를 0으로 업데이트
+            dispatch(setPosition(0));
         }
     };
 

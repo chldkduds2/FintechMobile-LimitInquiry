@@ -29,7 +29,7 @@ const LoansTypeModal = ({ onClose }: LoansTypeModalProps) => {
                         <label key={index} className="flex items-center mb-3">
                             <input
                                 type="checkbox"
-                                checked={loansTypeFilterModalState.some((filter) => filter === loansTypeFilter)}
+                                checked={loansTypeFilterModalState.some((filter: string) => filter === loansTypeFilter)}
                                 onChange={() => handleCheckboxClick(loansTypeFilter)}
                                 className="relative w-4 h-4 mr-2 bg-transparent border border-gray-300 rounded-full outline-none checked:bg-blue-600 accent-indigo-50"
                                 disabled={filteringDataListCounts[index].count === 0}
