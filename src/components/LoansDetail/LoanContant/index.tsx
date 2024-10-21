@@ -1,6 +1,7 @@
 import AiOutlineQuestionCircleIco from '@/assets/image/aiOutlineQuestionCircleIcon';
 import BankIcon from '@/assets/image/bankIcon';
 import FeeIcon from '@/assets/image/feeIcon';
+import UnFeeIcon from '@/assets/image/unFeeIcon';
 
 const LoanContent = ({ hasRedemptionFeeTag }: { hasRedemptionFeeTag: boolean }) => {
     return (
@@ -23,13 +24,12 @@ const LoanContent = ({ hasRedemptionFeeTag }: { hasRedemptionFeeTag: boolean }) 
 
             <div className="mt-5">
                 <div className="flex">
-                    <FeeIcon />
+                    {hasRedemptionFeeTag ? <FeeIcon /> : <UnFeeIcon />}
+
                     <div className="flex-row ml-5">
                         <div className="flex items-start justify-start text-16-bold">
                             <div>중도상환수수료가</div>
-                            <div className={`ml-1 ${hasRedemptionFeeTag ? 'text-indigo-50' : 'text-red-50'}`}>
-                                {hasRedemptionFeeTag ? '없어요' : '있어요'}
-                            </div>
+                            <div className={`ml-1 text-indigo-50`}>{hasRedemptionFeeTag ? '없어요' : '있어요'}</div>
                         </div>
                         <div className="mt-1 text-xs font-medium text-gray-50">
                             {hasRedemptionFeeTag

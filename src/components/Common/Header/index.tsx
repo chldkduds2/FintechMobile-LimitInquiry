@@ -15,10 +15,7 @@ const Header = memo(({ position, pathname }: { position: number; pathname: strin
             className={`flex flex-col h-full  ${pathname === '/' && position > 260 ? 'shadow-[0px_9px_10px_rgba(0,0,0,0.1)]' : ''}`}
         >
             <div className="flex h-[2vh] items-center justify-between">
-                <button
-                    onClick={handleButtonClick}
-                    className="h-full w-[55px] flex items-center justify-center active:bg-gray-95 mt-10"
-                >
+                <button onClick={handleButtonClick} className="h-full w-[55px] flex items-center justify-center mt-10 ">
                     <HeadeArrowIcon />
                 </button>
             </div>
