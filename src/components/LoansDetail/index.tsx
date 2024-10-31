@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useLoansListDateRepository from '@/services/LoansListDateRepository/queries';
 import FintechMobalieContentLayout from '@/components/Common/FintechMobalieLayout/FintechMobalieContentLayout/index';
 import LoanTitle from './LoanTitle/index';
 import LoanContent from './LoanContant/index';
@@ -11,7 +11,7 @@ import useLoansList from '@/hooks/Common/LoansListContainer/LoansList/useLoansLi
 
 const LoansDetail = () => {
     const { loanId } = useParams<{ loanId: string }>();
-    const { data: approvedConditionsLoanListDate = [] } = useApprovedConditionsLoansListDate('condition_approved');
+    const { data: approvedConditionsLoanListDate = [] } = useLoansListDateRepository('condition_approved');
     const [loanDetails, setLoanDetails] = useState<any>(null);
     const { isPending: isLoansRateLimitListPending } = useLoansRateLimitList();
     const { isPending: isoansListPending } = useLoansList();

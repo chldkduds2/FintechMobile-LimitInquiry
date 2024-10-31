@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialModalOpenState } from '@/types/ModalOpenStateType/modalOpenState.type';
 
 const modalOpenStateSlice = createSlice({
-    name: 'modalOpenState',
+    name: 'notApprovedLoansDataModalOpenState',
     initialState: initialModalOpenState,
     reducers: {
         setIsLoansTypeModalOpenState(state, action: PayloadAction<boolean>) {

@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import useModalOpenState from '@/services/ModalOpenStateRepository/queries';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectNotApprovedLoansDataModalOpenState } from '@/store/Selectors/index';
+import { setNotApprovedLoansDataModalOpenState } from '@/store/Slice/ModalOpenStateSlice/reducer';
 const modalPortal = document.getElementById('modal-portal')!;
 
 const useApprovedDataListClickModal = () => {
-    const { notApprovedLoansDataModalOpenState, setNotApprovedLoansDataModalOpenState } = useModalOpenState();
     const [isFailedDataListDetailBtnClick, setIsFailedDataListDetailBtnClick] = useState<boolean>(false);
     const [isRejectedDataListDetailBtnClick, setIsRejectedDataListDetailBtnClick] = useState<boolean>(false);
+    const dispatch = useDispatch();
+    const notApprovedLoansDataModalOpenState = useSelector(selectNotApprovedLoansDataModalOpenState);
 
     const handlerApprovedDataListClickModalOpen = () => {
-        setNotApprovedLoansDataModalOpenState(!notApprovedLoansDataModalOpenState);
+        dispatch(setNotApprovedLoansDataModalOpenState(!notApprovedLoansDataModalOpenState));
     };
 
     const handlerFailedDataListDetailBtnClick = () => {

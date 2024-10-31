@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
+import { LoansApply } from '@/types/LoansListDateType/loansListDate.type';
 import useLoansFilteringAndSortingList from '@/hooks/LoansFilteringAndSortingList/useLoansListFiltering';
 import { LoansListTagsColor } from '@/utils/LoansListTagsColor';
 import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
@@ -9,15 +9,16 @@ import { HiOutlineRefresh } from 'react-icons/hi';
 import { IoIosArrowForward } from 'react-icons/io';
 
 const LoansList = ({}) => {
-    const { approvedConditionsLoansFilteringList = [] } = useLoansFilteringAndSortingList();
+    const { LoansFilteringAndSortingList = [] }: { LoansFilteringAndSortingList: LoansApply[] } =
+        useLoansFilteringAndSortingList() || {};
     const { loanLimitDateFormatted, loanRateDateFormatted } = useLoansFormat();
     const { handleLoanClick, handleRefreshClick } = useLoansList();
 
     return (
         <div className="mb-10 border-t border-[#c1c2ca]/30">
-            {approvedConditionsLoansFilteringList.length > 0 ? (
+            {LoansFilteringAndSortingList.length > 0 ? (
                 <div>
-                    {approvedConditionsLoansFilteringList.map((loan: LoansApply, index: number) => (
+                    {LoansFilteringAndSortingList.map((loan: LoansApply, index: number) => (
                         <div
                             className="hover:active:bg-uniqueGray-99 flex-col w-full items-center  border-b border-[#c1c2ca]/30 pt-[18px] pb-[18px] cursor-pointer"
                             key={index}

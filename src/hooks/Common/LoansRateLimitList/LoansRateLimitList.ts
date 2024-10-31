@@ -1,6 +1,6 @@
-import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useLoansListDate from '@/services/LoansListDateRepository/queries';
 import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
-import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
+import { LoansApply } from '@/types/LoansListDateType/approvedConditionsLoansDate.type';
 import { useNavigate } from 'react-router-dom';
 import { useTransition } from 'react';
 

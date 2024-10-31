@@ -1,9 +1,6 @@
 import { useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/services/queryKey';
-import {
-    LoansListSortStateType,
-    initialIsRateSortState,
-} from '@/types/Common/LoansListSortStateType/loansListSortState.type';
+import { LoansListSortStateType, initialIsRateSortState } from '@/types/LoansListSortStateType/loansListSortState.type';
 
 const useLoansListSortState = (options?: UseQueryOptions<LoansListSortStateType, Error>) => {
     const queryClient = useQueryClient();
@@ -14,6 +11,7 @@ const useLoansListSortState = (options?: UseQueryOptions<LoansListSortStateType,
             const state = queryClient.getQueryData<LoansListSortStateType>([QUERY_KEYS.sortValue.isRateSortState]);
             return state !== undefined ? state : initialIsRateSortState;
         },
+        enabled: false,
     });
 
     const setIsRateSortedState = (newSortState: boolean) => {

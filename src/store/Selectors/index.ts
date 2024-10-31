@@ -1,6 +1,6 @@
 import { RootState } from '@/store';
 
-export const selectPositionState = (state: RootState) => state.positionState;
+export const selectCurrentPositionState = (state: RootState) => state.currentPositionState.currentPositionState;
 
 export const selectLoansFilterBarState = (state: RootState) => state.loansFilterBarState.loansFilterBarState || [];
 

@@ -1,9 +1,9 @@
 import { TbArrowsSort } from 'react-icons/tb';
 import useLoanListHeader from '@/hooks/Common/LoansListContainer/LoansListHeader/useLoansListHeader';
-import useLoansListCountState from '@/services/ApprovedConditionsLoansListCountStateRepository/queries';
+import useLoansListCountState from '@/services/LoansListCountStateRepository/queries';
 
 const LoansListHeader = () => {
-    const { loansListCountState } = useLoansListCountState();
+    const { loansListCountState } = useLoansListCountState('condition_approved');
     const { toggleSort, isRateSortState } = useLoanListHeader();
 
     return (

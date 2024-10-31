@@ -3,7 +3,7 @@ import { QUERY_KEYS } from '@/services/queryKey';
 import {
     LoansTypeFilterModalStateType,
     initialLoansTypeFilterModalState,
-} from '@/types/Common/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
+} from '@/types/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
 
 const useLoansTypeFilterBarState = () => {
     const queryClient = useQueryClient();
@@ -18,6 +18,7 @@ const useLoansTypeFilterBarState = () => {
                 ]);
                 return state !== undefined ? state : initialLoansTypeFilterModalState;
             },
+            enabled: false,
         });
 
     // [ 대출상품 필터값 추가 함수 ]

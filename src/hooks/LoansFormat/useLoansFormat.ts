@@ -1,4 +1,4 @@
-import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
+import { LoansApply } from '@/types/LoansListDateType/approvedConditionsLoansDate.type';
 
 const useLoansFormat = () => {
     // [ 한도 포멧 함수 ]

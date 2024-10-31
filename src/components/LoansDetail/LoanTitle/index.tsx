@@ -1,7 +1,7 @@
 import { RxDividerVertical } from 'react-icons/rx';
 import useLoansFormat from '@/hooks/LoansFormat/useLoansFormat';
 import { LoansListTagsColor } from '@/utils/LoansListTagsColor';
-import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
+import { LoansApply } from '@/types/LoansListDateType/approvedConditionsLoansDate.type';
 
 const LoanTitle = ({ loanDetails }: { loanDetails: LoansApply }) => {
     const { loanLimitDateFormatted, loanRateDateFormatted } = useLoansFormat();

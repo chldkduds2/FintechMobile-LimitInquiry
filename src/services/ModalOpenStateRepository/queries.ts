@@ -11,6 +11,7 @@ const useModalOpenState = () => {
             return state !== undefined ? state : initialModalOpenState;
         },
         initialData: initialModalOpenState,
+        enabled: false,
     });
 
     const setIsLoansTypeModalOpenState = (newLoansTypeModalOpenState: boolean) => {

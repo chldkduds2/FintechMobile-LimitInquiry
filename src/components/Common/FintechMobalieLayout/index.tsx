@@ -9,7 +9,7 @@ const FintechMobalieLayout = ({ children }: PropsWithChildren) => {
 
     return (
         <div>
-            <Header position={position} pathname={pathname} />
+            <Header position={Number(position)} pathname={pathname} />
             <div className={`flex justify-center contain-conten ${pathname === '/' && position > 260 ? '' : ' mt-10'}`}>
                 <div
                     ref={scrollRef}

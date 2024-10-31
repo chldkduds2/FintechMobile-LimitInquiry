@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { initialIsRateSortState } from '@/types/Common/LoansListSortStateType/loansListSortState.type';
+import { initialIsRateSortState } from '@/types/LoansListSortStateType/loansListSortState.type';
 
 const loansListSortStateSlice = createSlice({
     name: 'loansListSortState',

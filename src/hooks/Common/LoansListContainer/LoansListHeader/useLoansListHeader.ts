@@ -10,7 +10,6 @@ const useLoansListHeader = (options?: UseQueryOptions<boolean, Error>) => {
 
     const toggleSort = () => {
         dispatch(setIsRateSortState(!isRateSortState));
-        console.log(isRateSortState);
     };
 
     return { isRateSortState, toggleSort };

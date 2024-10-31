@@ -1,8 +1,8 @@
 import CountdownToMidnight from './CountdownToMidnight';
-import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useLoansListDateRepository from '@/services/LoansListDateRepository/queries';
 
 const MainTitleContainer = () => {
-    const { data: approvedConditionsLoanListDate } = useApprovedConditionsLoansListDate('condition_approved');
+    const { data: approvedConditionsLoanListDate } = useLoansListDateRepository('condition_approved');
     const titleMessage = `오늘만 가능한 ${approvedConditionsLoanListDate?.length}개 조건으로<br /> 바로 대출 받으세요`;
 
     return (

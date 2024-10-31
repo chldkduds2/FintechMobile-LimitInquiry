@@ -1,55 +1,66 @@
 import { useSelector } from 'react-redux';
-import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
-import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import { useState, useEffect } from 'react';
+import { LoansApply } from '@/types/LoansListDateType/loansListDate.type';
+import useLoansListDate from '@/services/LoansListDateRepository/queries';
 import {
     selectLoansFilterBarState,
     selectLoansTypeFilterBarState,
     selectLoansListSortState,
 } from '@/store/Selectors/index';
-import { LoansTypeFilterType } from '@/types/Common/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
+import { LoansTypeFilterType } from '@/types/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
 
 const useLoansFilteringAndSortingList = () => {
-    const { data: approvedConditionsLoanListDate, error } = useLoansListDate('condition_approved');
-    const loansFiterBarState = useSelector(selectLoansFilterBarState) as string[];
-    const loansTypeFilterModalState = useSelector(selectLoansTypeFilterBarState) as unknown as string[];
+    const { data: LoansListDate = [], error } = useLoansListDate('condition_approved');
+    const loansFilterBarState = useSelector(selectLoansFilterBarState) as string[];
+    const loansTypeFilterModalState = useSelector(selectLoansTypeFilterBarState) as string[];
     const isRateSortState = useSelector(selectLoansListSortState);
+    const [LoansFilteringAndSortingList, setLoansFilteringAndSortingList] = useState<LoansApply[]>(LoansListDate);
 
-    let approvedConditionsLoansFilteringList = approvedConditionsLoanListDate;
+    useEffect(() => {
+        let filteredList = LoansListDate;
 
-    // 데이터 필터링
-    if (loansFiterBarState.length > 0) {
-        // 대출종류 데이터 필터링
-        if (loansFiterBarState.includes('대출종류')) {
-            approvedConditionsLoansFilteringList = approvedConditionsLoansFilteringList?.filter((loan: LoansApply) => {
-                const loanTypes: LoansTypeFilterType[] = ['신용대출', '주택담보대출', '자동차담보대출', '대환대출'];
-                return loanTypes.some((type) => loan.product.name.includes(type));
-            });
-        } else {
-            approvedConditionsLoansFilteringList = approvedConditionsLoanListDate?.filter((loan: LoansApply) => {
-                return loan.product.tags.some((tag) => loansFiterBarState.includes(tag.text));
-            });
-        }
-    }
+        // [ 대출상품 속성 필터링 ]
+        // - 전체 대출종류 포함 리스트 필터링
+        const filterLoansByType = (loan: LoansApply) => {
+            const loanTypes: LoansTypeFilterType[] = ['신용대출', '주택담보대출', '자동차담보대출', '대환대출'];
+            return loanTypes.some((type) => loan.product.name.includes(type));
+        };
 
-    // 대출종류데이터 세부 필터링
-    if (loansTypeFilterModalState.length > 0) {
-        approvedConditionsLoansFilteringList = approvedConditionsLoansFilteringList?.filter((loan: LoansApply) => {
-            return loansTypeFilterModalState.some((type: string) => loan.product.name.includes(type));
-        });
-    }
+        // - 태그 포함 리스트 필터링
+        const filterLoansByTags = (loan: LoansApply) => {
+            return loan.product.tags.some((tag) => loansFilterBarState.includes(tag.text));
+        };
 
-    if (approvedConditionsLoansFilteringList) {
-        // 정렬 로직
-        approvedConditionsLoansFilteringList = approvedConditionsLoansFilteringList.sort((a, b) => {
-            if (isRateSortState) {
-                return (a.condition?.loanRate ?? 0) - (b.condition?.loanRate ?? 0);
-            } else {
-                return (b.condition?.loanLimit ?? 0) - (a.condition?.loanLimit ?? 0);
+        if (loansFilterBarState.length > 0) {
+            if (loansFilterBarState.includes('대출종류')) {
+                filteredList = filteredList.filter(filterLoansByType);
             }
-        });
-    }
+        }
 
-    return { approvedConditionsLoansFilteringList, error };
+        // - 세부 대출종류 포함 리스트 필터링
+        if (loansTypeFilterModalState.length > 0) {
+            filteredList = filteredList.filter((loan) =>
+                loansTypeFilterModalState.some((type) => loan.product.name.includes(type))
+            );
+
+            // - 위에서 필터링한 리스트를 태그 기준으로 또 필터링
+            if (loansFilterBarState.length > 1) {
+                filteredList = filteredList.filter(filterLoansByTags);
+            }
+        }
+
+        // [ 정렬 로직 ]
+        filteredList = filteredList.sort((a, b) => {
+            return isRateSortState
+                ? (a.condition?.loanRate ?? 0) - (b.condition?.loanRate ?? 0)
+                : (b.condition?.loanLimit ?? 0) - (a.condition?.loanLimit ?? 0);
+        });
+
+        // 필터링 및 정렬된 리스트 상태 업데이트
+        setLoansFilteringAndSortingList(filteredList);
+    }, [LoansListDate, loansFilterBarState, loansTypeFilterModalState, isRateSortState]);
+
+    return { LoansFilteringAndSortingList, error };
 };
 
 export default useLoansFilteringAndSortingList;

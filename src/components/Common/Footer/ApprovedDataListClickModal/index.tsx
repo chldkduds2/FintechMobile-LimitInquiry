@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { IoClose } from 'react-icons/io5';
 import useApprovedDataListClickModal from '@/hooks/Common/Footer/ApprovedDataListClickContainer/ApprovedDataListClickModal/useApprovedDataListClickModal';
-import useApprovedConditionsLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
+import useLoansListDateRepository from '@/services/LoansListDateRepository/queries';
 import Icon from '@/assets/image/Icon';
 
 const ApprovedDataListClickModal = () => {
@@ -15,8 +15,8 @@ const ApprovedDataListClickModal = () => {
         handlerFailedDataListDetailBtnClick,
         handlersRejectedDataListDetailBtnClick,
     } = useApprovedDataListClickModal();
-    const { data: failedConditionsLoansListDate = [] } = useApprovedConditionsLoansListDate('condition_failed');
-    const { data: rejectedConditionsLoansListDate = [] } = useApprovedConditionsLoansListDate('condition_rejected');
+    const { data: failedConditionsLoansListDate = [] } = useLoansListDateRepository('condition_failed');
+    const { data: rejectedConditionsLoansListDate = [] } = useLoansListDateRepository('condition_rejected');
 
     return ReactDOM.createPortal(
         <div

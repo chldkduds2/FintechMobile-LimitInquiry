@@ -6,10 +6,10 @@ import FintechMobalieContentLayout from '@/components/Common/FintechMobalieLayou
 import LoansListContainert from '../Common/LoansListContainer/index';
 import Footer from '@/components/Common/Footer/index';
 import { useSelector } from 'react-redux';
-import { selectPositionState } from '@/store/Selectors/index';
+import { selectCurrentPositionState } from '@/store/Selectors/index';
 
 const Home = () => {
-    const position = useSelector(selectPositionState);
+    const position = useSelector(selectCurrentPositionState);
     return (
         <React.Fragment>
             <FintechMobalieContentLayout>
@@ -18,7 +18,7 @@ const Home = () => {
             </FintechMobalieContentLayout>
             <div className="h-[10px] w-full bg-gray-99" />
             <FintechMobalieContentLayout>
-                <div className={`${position > 260 ? 'hidden' : ''} `}>
+                <div className={`${Number(position) > 260 ? 'hidden' : ''} `}>
                     <LoanFilterBar />
                 </div>
                 <LoansListContainert />

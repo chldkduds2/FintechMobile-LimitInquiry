@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { LoansApply } from '@/types/ApprovedConditionsLoansDateType/approvedConditionsLoansDate.type';
-import { LoansTypeFilterType } from '@/types/Common/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
+import { LoansApply } from '@/types/LoansListDateType/approvedConditionsLoansDate.type';
+import { LoansTypeFilterType } from '@/types/LoanFilterBarType/LoansTypeFilterModalType/loansTypeFilterModal.type';
 import { removeFilter } from '@/store/Slice/LoansFilterBarStateSlice/reducer';
-import { selectLoansTypeFilterBarState } from '@/store/Selectors/index';
+import { selectLoansTypeFilterBarState, selectIsLoansTypeModalOpenState } from '@/store/Selectors/index';
 import {
     addLoansTypeFilter,
     removeLoansTypeFilter,
     resetLoansTypeFilter,
 } from '@/store/Slice/LoansFilterBarStateSlice/LoansTypeFilterBarModalStateSlice/reducer';
-import useLoansListDate from '@/services/ApprovedConditionsLoansDateRepository/queries';
-import useModalOpenState from '@/services/ModalOpenStateRepository/queries';
+import { setIsLoansTypeModalOpenState } from '@/store/Slice/ModalOpenStateSlice/reducer';
+import useLoansListDate from '@/services/LoansListDateRepository/queries';
 
 export const useLoansTypeFilterModal = () => {
     const dispatch = useDispatch();
@@ -18,10 +18,10 @@ export const useLoansTypeFilterModal = () => {
     const { data: approvedConditionsLoanListDate = [] } = useLoansListDate('condition_approved');
 
     const loansTypeFilterModalState = useSelector(selectLoansTypeFilterBarState) as unknown as string[];
-    const { isLoansTypeModalOpenState, setIsLoansTypeModalOpenState } = useModalOpenState();
+    const isLoansTypeModalOpenState = useSelector(selectIsLoansTypeModalOpenState);
 
     const toggleModal = () => {
-        setIsLoansTypeModalOpenState(!isLoansTypeModalOpenState);
+        dispatch(setIsLoansTypeModalOpenState(!isLoansTypeModalOpenState));
         dispatch(removeFilter('대출종류'));
     };
 
@@ -59,7 +59,7 @@ export const useLoansTypeFilterModal = () => {
     };
 
     const handleResultBtnClick = () => {
-        setIsLoansTypeModalOpenState(!isLoansTypeModalOpenState);
+        dispatch(setIsLoansTypeModalOpenState(!isLoansTypeModalOpenState));
     };
 
     return {
@@ -68,7 +68,7 @@ export const useLoansTypeFilterModal = () => {
         filteringDataListCounts,
         filteringDataListTotalCount,
         loansTypeFilterModalState,
-        isLoansTypeModalOpenState: isLoansTypeModalOpenState,
+        isLoansTypeModalOpenState,
         toggleModal,
         handleCheckboxClick,
         handleRefreshClick,

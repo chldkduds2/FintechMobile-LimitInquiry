@@ -6,12 +6,12 @@ import { Provider } from 'react-redux';
 import store from './store/index';
 import FintechMobalieLayout from '@/components/Common/FintechMobalieLayout/index';
 import './style/globals.css';
-import Header from '@/components/Common/Header/index';
 
 const App = () => {
     const defaultQueryOptions = {
         staleTime: 1000 * 60 * 10,
-        cacheTime: 1000 * 60 * 30,
+        gcTime: 1000 * 60 * 30,
+        refetchOnWindowFocus: true,
     };
     const queryClient = new QueryClient({
         defaultOptions: {

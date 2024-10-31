@@ -1,9 +1,6 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/services/queryKey';
-import {
-    LoansFilterBarStateType,
-    initialLoanFilterBarState,
-} from '@/types/Common/LoanFilterBarType/loanFilterBar.type';
+import { LoansFilterBarStateType, initialLoanFilterBarState } from '@/types/LoanFilterBarType/loanFilterBar.type';
 
 const useLoansFilterBarState = () => {
     const queryClient = useQueryClient();
@@ -17,6 +14,7 @@ const useLoansFilterBarState = () => {
             ]);
             return state !== undefined ? state : initialLoanFilterBarState;
         },
+        enabled: false,
     });
 
     // [ 필터값 추가 함수 ]

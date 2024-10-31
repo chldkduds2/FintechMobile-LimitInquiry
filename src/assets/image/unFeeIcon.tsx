@@ -26,7 +26,7 @@ const UnFeeIcon = () => {
                 strokeWidth="1.45638"
                 strokeLinecap="round"
             ></path>
-            <path d="M12.019 17.2788H21.981" stroke="#6A758E" stroke-width="1.45638" stroke-linecap="round"></path>
+            <path d="M12.019 17.2788H21.981" stroke="#6A758E" strokeWidth="1.45638" strokeLinecap="round"></path>
             <circle cx="26.5" cy="26.5" r="5.5" fill="#ED5C21"></circle>
             <path
                 fillRule="evenodd"
