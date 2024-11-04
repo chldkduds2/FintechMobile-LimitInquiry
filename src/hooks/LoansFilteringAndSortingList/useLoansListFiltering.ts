@@ -31,19 +31,26 @@ const useLoansFilteringAndSortingList = () => {
             return loan.product.tags.some((tag) => loansFilterBarState.includes(tag.text));
         };
 
+        // (1)
         if (loansFilterBarState.length > 0) {
+            // (1-1)
             if (loansFilterBarState.includes('대출종류')) {
                 filteredList = filteredList.filter(filterLoansByType);
             }
+
+            // (1-2)
+            else {
+                filteredList = filteredList.filter(filterLoansByTags);
+            }
         }
 
-        // - 세부 대출종류 포함 리스트 필터링
+        // (2)
         if (loansTypeFilterModalState.length > 0) {
             filteredList = filteredList.filter((loan) =>
                 loansTypeFilterModalState.some((type) => loan.product.name.includes(type))
             );
 
-            // - 위에서 필터링한 리스트를 태그 기준으로 또 필터링
+            // (2-1)
             if (loansFilterBarState.length > 1) {
                 filteredList = filteredList.filter(filterLoansByTags);
             }
